@@ -21,7 +21,11 @@ public class RecipeCategory implements Serializable {
 	private Long id;
 	private String name;
 	
-	@OneToMany(mappedBy="recipe")
+	@ManyToMany
+    @JoinTable(
+        name="recipes",
+        joinColumns=@JoinColumn(name="recipe_category_id", referencedColumnName="id"),
+        inverseJoinColumns=@JoinColumn(name="recipe_id", referencedColumnName="id"))
 	private List<Recipe> recipes;
 	
 	public RecipeCategory() {
