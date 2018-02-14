@@ -29,8 +29,7 @@ public class Recipe implements Serializable{
 
 	private Date date;
 	
-	@ManyToOne
-	@JoinColumn
+	@ManyToMany(mappedBy="recipes")
 	private RecipeCategory category;
 	
 	@ManyToOne
@@ -39,6 +38,11 @@ public class Recipe implements Serializable{
 
 	@ManyToMany(mappedBy="recipes")
 	private List<Ingredient> ingredients;
+	
+	@ManyToOne
+	@JoinColumn
+    private Rate rate;
+	
 	
 	public Long getId() {
 		return this.id;
@@ -112,7 +116,14 @@ public class Recipe implements Serializable{
 	public List<Ingredient> getIngredients() {
 		return this.ingredients;
 	}
-	public void setRIngredient(List<Ingredient> ingredients) {
+	public void setIngredient(List<Ingredient> ingredients) {
 		this.ingredients = ingredients;
+	}
+	
+	public Rate getRate() {
+		return this.rate;
+	}
+	public void setRate(Rate rate) {
+		this.rate =rate;
 	}
 }

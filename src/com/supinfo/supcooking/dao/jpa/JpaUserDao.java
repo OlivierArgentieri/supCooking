@@ -1,4 +1,4 @@
-	package com.supinfo.supcooking.dao.jpa;
+package com.supinfo.supcooking.dao.jpa;
 
 import java.util.List;
 
@@ -6,14 +6,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
-import com.supinfo.supcooking.dao.RecipeDAO;
-import com.supinfo.supcooking.entity.Recipe;
+import com.supinfo.supcooking.dao.UserDAO;
+import com.supinfo.supcooking.entity.User;
 
-public class JpaRecipeDao implements RecipeDAO {
+public class JpaUserDao implements UserDAO {
 	
 	private EntityManagerFactory factory;
 	
-	public JpaRecipeDao(EntityManagerFactory factory) {
+	public JpaUserDao(EntityManagerFactory factory) {
 		this.factory = factory;
 	}
 
@@ -24,12 +24,13 @@ public class JpaRecipeDao implements RecipeDAO {
 	//
 	
 	@Override
-	public void addRecipe(Recipe aRecipe) {
+	public void addUser(User aUser) {
 		EntityManager manager = factory.createEntityManager();
 		EntityTransaction transaction = manager.getTransaction();
+		
 		try {
 			transaction.begin();
-			manager.persist(aRecipe);
+			manager.persist(aUser);
 			manager.flush();
 			transaction.commit();
 		} catch (Exception e) {
@@ -41,43 +42,44 @@ public class JpaRecipeDao implements RecipeDAO {
 	}
 
 	@Override
-	public Recipe findRecipeById(Long id) {
-		Recipe aRecipe;
+	public User findUserById(Long id) {
+		User aUser;
 		try {
 			EntityManager manager = factory.createEntityManager();
-			aRecipe = (Recipe) manager.createQuery("SELECT recipe FROM Recipe AS recipe WHERE recipe.id = "+id).getSingleResult();
+			aUser = (User) manager.createQuery("SELECT user FROM User AS user WHERE user.id = "+id).getSingleResult();
 			manager.close();
 		} catch (Exception e) {
 			throw e;
 		}
-		return aRecipe;
+		return aUser;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Recipe> getAllRecipes() {
-		List<Recipe> lesRecipes;
+	public List<User> getAllUsers() {
+		List<User> lesUsers;
 		try {
 			EntityManager manager = factory.createEntityManager();
-			lesRecipes = (List<Recipe>) manager.createQuery("SELECT recipe FROM Recipe AS recipe").getResultList();
+			lesUsers = (List<User>) manager.createQuery("SELECT user FROM User AS user").getResultList();
 			manager.close();
 		} catch (Exception e) {
 			throw e;
 		}
-		return lesRecipes;
+		return lesUsers;
 	}
 
 	@Override
-	public void updateRecipe(Recipe aRecipe) {
+	public void updateUser(User aUser) {
 		EntityManager manager = factory.createEntityManager();
 		EntityTransaction transaction = manager.getTransaction();
 		try {
 			transaction.begin();
-			manager.createQuery("UPDATE Recipe AS recipe SET recipe.name = '"+aRecipe.getName()+"' WHERE recipe.id="+aRecipe.getId()).executeUpdate();
-			manager.createQuery("UPDATE Recipe AS recipe SET recipe.description = '"+aRecipe.getRecipeDescription()+"' WHERE recipe.id="+aRecipe.getId()).executeUpdate();
-			manager.createQuery("UPDATE Recipe AS recipe SET recipe.icon = "+aRecipe.getIcon()+" WHERE recipe.id="+aRecipe.getId()).executeUpdate();
-			manager.createQuery("UPDATE Recipe AS recipe SET recipe.time = "+aRecipe.getTime()+" WHERE recipe.id="+aRecipe.getId()).executeUpdate();
-			manager.createQuery("UPDATE Recipe AS recipe SET recipe.difficulty = "+aRecipe.getDifficulty()+" WHERE recipe.id="+aRecipe.getId()).executeUpdate();
+			manager.createQuery("UPDATE User AS user SET user.username = '"+aUser.getUsername()+"' WHERE user.id="+aUser.getId()).executeUpdate();
+			manager.createQuery("UPDATE User AS user SET user.password = '"+aUser.getPassword()+"' WHERE user.id="+aUser.getId()).executeUpdate();
+			manager.createQuery("UPDATE User AS user SET user.firstname = '"+aUser.getFirstName()+"' WHERE user.id="+aUser.getId()).executeUpdate();
+			manager.createQuery("UPDATE User AS user SET user.lastname = '"+aUser.getLastName()+"' WHERE user.id="+aUser.getId()).executeUpdate();
+			manager.createQuery("UPDATE User AS user SET user.mail = '"+aUser.getMail()+"' WHERE user.id="+aUser.getId()).executeUpdate();
+			manager.createQuery("UPDATE User AS user SET user.name = '"+aUser.getPhoneNumber()+"' WHERE user.id="+aUser.getId()).executeUpdate();
 			transaction.commit();
 		} catch (Exception e) {
 			// Si il y a une erreur et que la transaction est ouverte on rollback la transaction
@@ -87,12 +89,12 @@ public class JpaRecipeDao implements RecipeDAO {
 	}
 
 	@Override
-	public void removeRecipe(Recipe aRecipe) {
+	public void removeUser(User aUser) {
 		EntityManager manager = factory.createEntityManager();
 		EntityTransaction transaction = manager.getTransaction();
 		try {
 			transaction.begin();
-			manager.createQuery("DELETE FROM Recipe AS recipe WHERE recipe.id = "+aRecipe.getId()).executeUpdate();
+			manager.createQuery("DELETE FROM User AS user WHERE user.id = "+aUser.getId()).executeUpdate();
 			transaction.commit();
 		} catch (Exception e) {
 			// Si il y a une erreur et que la transaction est ouverte on rollback la transaction

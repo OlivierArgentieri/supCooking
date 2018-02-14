@@ -20,6 +20,9 @@ public class User implements Serializable{
 	private String lastname;
 	private String mail;
 	private String phoneNumber;
+	private String address;
+	private String postCode;
+	private String description;
 	
 	@OneToMany(mappedBy="recipe")
 	private List<Recipe> recipes;
@@ -53,7 +56,7 @@ public class User implements Serializable{
 	public String getLastName() {
 		return this.lastname;
 	}
-	public void setLstName(String lastName) {
+	public void setLastName(String lastName) {
 		this.lastname = lastName;
 	}
 	
@@ -74,8 +77,29 @@ public class User implements Serializable{
 	public List<Recipe> getRecipes() {
 		return this.recipes;
 	}
+	
 	public void setRecipe(List<Recipe> recipes) {
 		this.recipes = recipes;
 	}
 	
+	public String getAddress() {
+		return this.address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
+	public String getPostCode() {
+		return this.postCode;
+	}
+	public void setPostCode(String postCode) {
+		this.postCode = postCode;
+	}
+	
+	public String getDescription() {
+		return this.description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 }
