@@ -38,7 +38,19 @@ private EntityManagerFactory factory;
 
 	@Override
 	public void updateRate(Rate aRate) {
-		// TODO Auto-generated method stub
+		EntityManager manager = factory.createEntityManager();
+		EntityTransaction transaction = manager.getTransaction();
+		try {
+			transaction.begin();
+			manager.createQuery("UPDATE Rate AS rate SET rate.rating = '"+aRate.getNameIngredient()+"' WHERE ingredient.id="+aIngredient.getId()).executeUpdate();
+			manager.createQuery("UPDATE Rate AS rate SET rate.recipes = '"+aRate.getPrice()+"' WHERE ingredient.id="+aIngredient.getId()).executeUpdate();
+			manager.createQuery("UPDATE Rate AS rate SET rate.image = '"+aRate.getImage()+"' WHERE ingredient.id="+aIngredient.getId()).executeUpdate();
+			transaction.commit();
+		} catch (Exception e) {
+			// Si il y a une erreur et que la transaction est ouverte on rollback la transaction
+			if(transaction.isActive()) transaction.rollback();
+		}
+		manager.close();
 		
 	}
 

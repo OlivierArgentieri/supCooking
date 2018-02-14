@@ -39,7 +39,7 @@ public class Rate implements Serializable{
 		return this.rating;
 	}
 	public void setRating(int rating) {
-		this.rating = rating;
+		this.rating = rating;	
 	}
 	
 	public List<Recipe> getRecipes() {
