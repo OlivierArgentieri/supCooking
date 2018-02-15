@@ -30,10 +30,10 @@ public class Recipe implements Serializable{
 	private Date date;
 	
 	@ManyToMany(mappedBy="recipes")
-	private RecipeCategory category;
+	private List<RecipeCategory> category;
 	
 	@ManyToOne
-	@JoinColumn
+	@JoinColumn()
 	private User author;
 
 	@ManyToMany(mappedBy="recipes")
@@ -92,10 +92,10 @@ public class Recipe implements Serializable{
 		this.cookingTime = cookingTime;
 	}
 	
-	public RecipeCategory getCategory () {
+	public List<RecipeCategory> getCategory () {
 		return this.category;
 	}
-	public void setCategory(RecipeCategory category) {
+	public void setCategory(List<RecipeCategory> category) {
 		this.category = category;
 	}
 	

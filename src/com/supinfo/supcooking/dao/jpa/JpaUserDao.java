@@ -80,6 +80,9 @@ public class JpaUserDao implements UserDAO {
 			manager.createQuery("UPDATE User AS user SET user.lastname = '"+aUser.getLastName()+"' WHERE user.id="+aUser.getId()).executeUpdate();
 			manager.createQuery("UPDATE User AS user SET user.mail = '"+aUser.getMail()+"' WHERE user.id="+aUser.getId()).executeUpdate();
 			manager.createQuery("UPDATE User AS user SET user.name = '"+aUser.getPhoneNumber()+"' WHERE user.id="+aUser.getId()).executeUpdate();
+			manager.createQuery("UPDATE User AS user SET user.address = '"+aUser.getAddress()+"' WHERE user.id="+aUser.getId()).executeUpdate();
+			manager.createQuery("UPDATE User AS user SET user.postcode = '"+aUser.getPostCode()+"' WHERE user.id="+aUser.getId()).executeUpdate();
+			manager.createQuery("UPDATE User AS user SET user.description = '"+aUser.getDescription()+"' WHERE user.id="+aUser.getId()).executeUpdate();
 			transaction.commit();
 		} catch (Exception e) {
 			// Si il y a une erreur et que la transaction est ouverte on rollback la transaction

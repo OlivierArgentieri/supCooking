@@ -7,7 +7,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
 import com.supinfo.supcooking.dao.RateDAO;
+import com.supinfo.supcooking.entity.Ingredient;
 import com.supinfo.supcooking.entity.Rate;
+import com.supinfo.supcooking.entity.RecipeCategory;
 
 public class JpaRateDao implements RateDAO {
 
@@ -20,20 +22,45 @@ private EntityManagerFactory factory;
 	
 	@Override
 	public void addRate(Rate aRate) {
-		// TODO Auto-generated method stub
+		EntityManager manager = factory.createEntityManager();
+		EntityTransaction transaction = manager.getTransaction();
+		try {
+			transaction.begin();
+			manager.persist(aRate);
+			manager.flush();
+			transaction.commit();
+		} catch (Exception e) {
+			// Si il y a une erreur et que la transaction est ouverte on rollback la transaction
+			if(transaction.isActive()) transaction.rollback();
+		}
 		
+		manager.close();
 	}
 
 	@Override
 	public Rate findRateById(Long id, String IpAddress) {
-		// TODO Auto-generated method stub
-		return null;
+		Rate aRate;
+		try {
+			EntityManager manager = factory.createEntityManager();
+			aRate = (Rate) manager.createQuery("SELECT rate FROM rate AS rate WHERE rate.id = "+id + "AND rate.ip =" + IpAddress).getSingleResult();
+			manager.close();
+		} catch (Exception e) {
+			throw e;
+		}
+		return aRate;
 	}
 
 	@Override
 	public List<Rate> getAllRates() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Rate> lesRates;
+		try {
+			EntityManager manager = factory.createEntityManager();
+			lesRates = (List<Rate>) manager.createQuery("SELECT rate FROM rate AS rate").getResultList();
+			manager.close();
+		} catch (Exception e) {
+			throw e;
+		}
+		return lesRates;
 	}
 
 	@Override
@@ -42,16 +69,13 @@ private EntityManagerFactory factory;
 		EntityTransaction transaction = manager.getTransaction();
 		try {
 			transaction.begin();
-			manager.createQuery("UPDATE Rate AS rate SET rate.rating = '"+aRate.getNameIngredient()+"' WHERE ingredient.id="+aIngredient.getId()).executeUpdate();
-			manager.createQuery("UPDATE Rate AS rate SET rate.recipes = '"+aRate.getPrice()+"' WHERE ingredient.id="+aIngredient.getId()).executeUpdate();
-			manager.createQuery("UPDATE Rate AS rate SET rate.image = '"+aRate.getImage()+"' WHERE ingredient.id="+aIngredient.getId()).executeUpdate();
+			manager.createQuery("UPDATE Rate AS rate SET rate.rating = '"+aRate.getRating()+"' WHERE rate.id="+aRate.getId() + "AND rate.ip="+ aRate.getIp()).executeUpdate();
 			transaction.commit();
 		} catch (Exception e) {
 			// Si il y a une erreur et que la transaction est ouverte on rollback la transaction
 			if(transaction.isActive()) transaction.rollback();
 		}
 		manager.close();
-		
 	}
 
 	@Override
