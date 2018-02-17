@@ -2,6 +2,11 @@ package com.supinfo.supcooking.servlet;
 
 import java.awt.List;
 import java.io.IOException;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,13 +16,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.supinfo.supcooking.entity.*;
 import java.util.*;
-/**
- * Servlet implementation class Register
- */
+
 @WebServlet("/Register")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private EntityManagerFactory em;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -31,15 +34,19 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
+		this.em = Persistence.createEntityManagerFactory("My-PU");
+		super.init();
 	}
-
+	
 	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
+	 * @see Servlet#destroy()
 	 */
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void destroy() {
 		// TODO Auto-generated method stub
+		this.em.close();
+		super.destroy();
 	}
-
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -67,6 +74,21 @@ public class RegisterServlet extends HttpServlet {
 		user.setPhoneNumber(request.getParameter("phoneNumber"));
 		user.setRecipe(new ArrayList<Recipe>());
 		
+		EntityManager em = this.em.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try {
+        	et.begin();
+        	em.persist(user);
+        	em.flush();
+        	 
+        	et.commit();
+        }
+        
+        finally {
+			if (et.isActive()) et.rollback();
+			em.close();
+		}
+		doGet(request, response);
 
 	}
 
