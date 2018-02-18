@@ -3,26 +3,31 @@ package com.supinfo.supcooking.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity 
-@IdClass(RateId.class)
 @Table(name="rate")
 public class Rate implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;
+	
+
 
 	@Id
+	@JoinColumn(name = "id",insertable = false, updatable = false)
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
-	@Id
 	private String ip;
 	private int rating;
 	
@@ -30,14 +35,17 @@ public class Rate implements Serializable{
 	private List<Recipe> recipes;
 	
 	public Long getId() {
-		return id;
+		return this.id;
 	}
+	
+	
+	
 	
 	public String getIp() {
 		return this.ip;
 	}
 	public void setIp(String ip) {
-		this.ip = ip;
+		this.ip=ip;
 	}
 	
 	public int getRating() {

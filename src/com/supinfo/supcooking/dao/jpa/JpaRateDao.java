@@ -7,9 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
 import com.supinfo.supcooking.dao.RateDAO;
-import com.supinfo.supcooking.entity.Ingredient;
 import com.supinfo.supcooking.entity.Rate;
-import com.supinfo.supcooking.entity.RecipeCategory;
 
 public class JpaRateDao implements RateDAO {
 
@@ -84,7 +82,7 @@ private EntityManagerFactory factory;
 		EntityTransaction transaction = manager.getTransaction();
 		try {
 			transaction.begin();
-			manager.createQuery("DELETE FROM Rate AS rate WHERE rate.id = "+aRate.getId()).executeUpdate();
+			manager.createQuery("DELETE FROM Rate AS rate WHERE rate.id = "+aRate.getId() + "AND rate.ip = "+ aRate.getIp()).executeUpdate();
 			transaction.commit();
 		} catch (Exception e) {
 			// Si il y a une erreur et que la transaction est ouverte on rollback la transaction

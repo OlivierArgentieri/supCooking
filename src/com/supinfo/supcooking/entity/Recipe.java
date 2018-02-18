@@ -120,10 +120,11 @@ public class Recipe implements Serializable{
 		this.ingredients = ingredients;
 	}
 	
-	public Rate getRate() {
+	
+	public Rate getRateId() {
 		return this.rate;
 	}
 	public void setRate(Rate rate) {
-		this.rate =rate;
+		this.rate = rate;
 	}
 }

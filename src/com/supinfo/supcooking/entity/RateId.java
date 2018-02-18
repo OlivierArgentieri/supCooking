@@ -1,17 +1,20 @@
-package com.supinfo.supcooking.entity;
+ /*package com.supinfo.supcooking.entity;
 
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Embeddable
 public class RateId implements Serializable{
 	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
-	
 	private String ip;
 	
 	
@@ -41,3 +44,4 @@ public class RateId implements Serializable{
         return Objects.hash(getId(), getIp());
     }
 }
+*/

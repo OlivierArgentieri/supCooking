@@ -52,7 +52,7 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.sendRedirect("/supCooking/register.jsp");
 	}
 
 	/**
@@ -68,6 +68,7 @@ public class RegisterServlet extends HttpServlet {
 		user.setDescription(request.getParameter("description"));
 		user.setFirstName(request.getParameter("firstName"));
 		user.setLastName(request.getParameter("lastName"));
+		user.setUsername(request.getParameter("username"));
 		user.setMail(request.getParameter("mail"));
 		user.setPassword(request.getParameter("password"));
 		user.setPostCode(request.getParameter("postCode"));
