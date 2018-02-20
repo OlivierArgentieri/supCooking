@@ -1,7 +1,7 @@
 package com.supinfo.supcooking.servlet;
 
-import java.awt.List;
 import java.io.IOException;
+import java.security.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.supinfo.supcooking.entity.*;
 import java.util.*;
 
-@WebServlet("/Register")
+@WebServlet("/rxDegister")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private EntityManagerFactory em;
@@ -70,7 +70,18 @@ public class RegisterServlet extends HttpServlet {
 		user.setLastName(request.getParameter("lastName"));
 		user.setUsername(request.getParameter("username"));
 		user.setMail(request.getParameter("mail"));
-		user.setPassword(request.getParameter("password"));
+		
+		MessageDigest md;
+		try {
+			md = MessageDigest.getInstance("SHA-256");
+			md.update(request.getParameter("password").getBytes());
+			user.setPassword(bytesToHex(md.digest()));
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		user.setPostCode(request.getParameter("postCode"));
 		user.setPhoneNumber(request.getParameter("phoneNumber"));
 		user.setRecipe(new ArrayList<Recipe>());
@@ -92,5 +103,11 @@ public class RegisterServlet extends HttpServlet {
 		doGet(request, response);
 
 	}
+	
+	 public static String bytesToHex(byte[] bytes) {
+	        StringBuffer result = new StringBuffer();
+	        for (byte byt : bytes) result.append(Integer.toString((byt & 0xff) + 0x100, 16).substring(1));
+	        return result.toString();
+	    }
 
 }
