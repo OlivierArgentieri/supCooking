@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.supinfo.supcooking.entity.*;
 import java.util.*;
 
-@WebServlet("/rxDegister")
+@WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private EntityManagerFactory em;
@@ -81,7 +81,6 @@ public class RegisterServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		
 		user.setPostCode(request.getParameter("postCode"));
 		user.setPhoneNumber(request.getParameter("phoneNumber"));
 		user.setRecipe(new ArrayList<Recipe>());
@@ -92,7 +91,6 @@ public class RegisterServlet extends HttpServlet {
         	et.begin();
         	em.persist(user);
         	em.flush();
-        	 
         	et.commit();
         }
         
@@ -100,8 +98,6 @@ public class RegisterServlet extends HttpServlet {
 			if (et.isActive()) et.rollback();
 			em.close();
 		}
-		doGet(request, response);
-
 	}
 	
 	 public static String bytesToHex(byte[] bytes) {
