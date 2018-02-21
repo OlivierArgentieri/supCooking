@@ -2,6 +2,7 @@ package com.supinfo.supcooking.servlet;
 
 import java.io.IOException;
 import java.security.*;
+import java.time.LocalDateTime;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,6 +14,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.tomcat.jni.Local;
+import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 
 import com.supinfo.supcooking.dao.UserDAO;
 import com.supinfo.supcooking.dao.jpa.JpaUserDao;
@@ -64,11 +68,8 @@ public class RegisterServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
 
-		Map<String, String> messages = new HashMap<String, String>();
-	    String name = request.getParameter("name");
-	   
-
-	    
+		Map<String, String> messages = new HashMap<String, String>();    
+		
 		User user;
 		user = new User();
 		user.setAddress(request.getParameter("address"));
@@ -77,23 +78,13 @@ public class RegisterServlet extends HttpServlet {
 		user.setLastName(request.getParameter("lastName"));
 		user.setUsername(request.getParameter("username"));
 		user.setMail(request.getParameter("mail"));
-		
 		// pour le SHA-256
-		MessageDigest md;
-		try {
-			md = MessageDigest.getInstance("SHA-256");
-			md.update(request.getParameter("password").getBytes());
-			user.setPassword(bytesToHex(md.digest()));
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		user.setPassword(hash256(request.getParameter("password")));
 		
 		user.setPostCode(request.getParameter("postCode"));
 		user.setPhoneNumber(request.getParameter("phoneNumber"));
+		
 		user.setRecipe(new ArrayList<Recipe>());
-		
-		
 		
 		EntityManager em = this.em.createEntityManager();
         EntityTransaction et = em.getTransaction();
@@ -123,10 +114,22 @@ public class RegisterServlet extends HttpServlet {
         request.getRequestDispatcher("register.jsp").forward(request, response);
 	}
 	
-	 public static String bytesToHex(byte[] bytes) {
-	        StringBuffer result = new StringBuffer();
-	        for (byte byt : bytes) result.append(Integer.toString((byt & 0xff) + 0x100, 16).substring(1));
-	        return result.toString();
-	    }
-
+	public static String hash256(String s){
+		MessageDigest md;
+		try {
+			md = MessageDigest.getInstance("SHA-256");
+			md.update(s.getBytes());
+			return bytesToHex(md.digest());
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public static String bytesToHex(byte[] bytes) {
+        StringBuffer result = new StringBuffer();
+        for (byte byt : bytes) result.append(Integer.toString((byt & 0xff) + 0x100, 16).substring(1));
+        return result.toString();
+    }
 }

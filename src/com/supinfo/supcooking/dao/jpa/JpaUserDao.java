@@ -7,6 +7,7 @@ import javax.persistence.Cache;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceUnitUtil;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -86,14 +87,17 @@ public class JpaUserDao implements UserDAO {
 			manager.createQuery("UPDATE User AS user SET user.firstname = '"+aUser.getFirstName()+"' WHERE user.id="+aUser.getId()).executeUpdate();
 			manager.createQuery("UPDATE User AS user SET user.lastname = '"+aUser.getLastName()+"' WHERE user.id="+aUser.getId()).executeUpdate();
 			manager.createQuery("UPDATE User AS user SET user.mail = '"+aUser.getMail()+"' WHERE user.id="+aUser.getId()).executeUpdate();
-			manager.createQuery("UPDATE User AS user SET user.name = '"+aUser.getPhoneNumber()+"' WHERE user.id="+aUser.getId()).executeUpdate();
+			manager.createQuery("UPDATE User AS user SET user.phoneNumber = '"+aUser.getDescription()+"' WHERE user.id="+aUser.getId()).executeUpdate();
 			manager.createQuery("UPDATE User AS user SET user.address = '"+aUser.getAddress()+"' WHERE user.id="+aUser.getId()).executeUpdate();
-			manager.createQuery("UPDATE User AS user SET user.postcode = '"+aUser.getPostCode()+"' WHERE user.id="+aUser.getId()).executeUpdate();
+			manager.createQuery("UPDATE User AS user SET user.postCode = '"+aUser.getPostCode()+"' WHERE user.id="+aUser.getId()).executeUpdate();
 			manager.createQuery("UPDATE User AS user SET user.description = '"+aUser.getDescription()+"' WHERE user.id="+aUser.getId()).executeUpdate();
+			manager.createQuery("UPDATE User AS user SET user.token = '"+aUser.getToken()+"' WHERE user.id="+aUser.getId()).executeUpdate();
 			transaction.commit();
 		} catch (Exception e) {
 			// Si il y a une erreur et que la transaction est ouverte on rollback la transaction
 			if(transaction.isActive()) transaction.rollback();
+			System.out.println(e);
+			
 		}
 		manager.close();
 	}
@@ -119,26 +123,35 @@ public class JpaUserDao implements UserDAO {
 			EntityManager manager = factory.createEntityManager();
 			Query query = manager.createQuery("SELECT u FROM User u WHERE u.username = :username");
 			query.setParameter("username", aUser.getUsername());
+			
+			
 			u = (User) query.getSingleResult();	
 			
 			manager.close();
 		} catch (Exception e) {
-			throw e;
+			return null;
 		}
 		return u ;
 	}
 	
 	public User connexionUser(User aUser) {
-		User u;
+		User u = null;
 		try {
 			EntityManager manager = factory.createEntityManager();
 			Query query = manager.createQuery("SELECT u FROM User u WHERE u.username = :username AND u.password= :password");
 			query.setParameter("username", aUser.getUsername());
 			query.setParameter("password", aUser.getPassword());
-			u = (User) query.getSingleResult();	
+			u = (User) query.getSingleResult();
+
+			if(u != null)
+			{
+				u.setToken(aUser.getToken());
+				updateUser(u);
+			}
 			manager.close();
 		} catch (Exception e) {
-			throw e;
+			return null;
+			
 		}
 		return u ;
 	}

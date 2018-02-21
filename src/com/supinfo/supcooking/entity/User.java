@@ -13,7 +13,7 @@ public class User implements Serializable{
 	@Id
 	@GeneratedValue
 	private Long idUser;
-	
+	private String token;
 	private String username;
 	private String password;
 	private String firstname;
@@ -30,6 +30,14 @@ public class User implements Serializable{
 	
 	public Long getId() {
 		return this.idUser;
+	}
+	
+	public String getToken() {
+		return this.token;
+	}
+	
+	public void setToken(String token) {
+		this.token = token;
 	}
 	
 	public String getUsername() {

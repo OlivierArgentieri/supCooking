@@ -23,10 +23,10 @@
             <br>
             <img class="img-responsive" src="assets/image/logo.png"></a>
             <hr>
-            <form class="form-signin" method="POST" action="register">
+            <form class="form-signin" method="POST" action="login">
                 <span id="reauth-email" class="reauth-email"></span>
-                <input type="text" name="pseudo" id="inputPseudo" class="form-control" placeholder="Nom d'utilisateur" required autofocus>
-                <input type="password" name="mdp" id="inputPassword" class="form-control" placeholder="Mot de Passe" required>
+                <input type="text" name="username" id="inputPseudo" class="form-control" placeholder="Nom d'utilisateur" required autofocus>
+                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de Passe" required>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Connexion</button>
             </form>
           </div>
