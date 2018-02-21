@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.supinfo.sun.supcommerce.doa.SupProductDao;
+import com.supinfo.supcooking.dao.UserDAO;
+import com.supinfo.supcooking.dao.jpa.JpaUserDao;
 import com.supinfo.supcooking.entity.*;
 import java.util.*;
 
@@ -85,19 +88,32 @@ public class RegisterServlet extends HttpServlet {
 		user.setPhoneNumber(request.getParameter("phoneNumber"));
 		user.setRecipe(new ArrayList<Recipe>());
 		
+		
+		
 		EntityManager em = this.em.createEntityManager();
         EntityTransaction et = em.getTransaction();
-        try {
-        	et.begin();
-        	em.persist(user);
-        	em.flush();
-        	et.commit();
-        }
         
-        finally {
-			if (et.isActive()) et.rollback();
-			em.close();
-		}
+        JpaUserDao jpauser= new JpaUserDao();
+        if (!jpauser.existUser(user))
+        {
+	        try {
+	        	et.begin();
+	        	em.persist(user);
+	        	em.flush();
+	        	et.commit();
+	        }
+	        
+	        finally {
+				if (et.isActive()) et.rollback();
+				em.close();
+			}
+        }
+        else
+        {
+        	response.sendError(0, "Utilisateur éxistant");
+        }
+        	
+       
 	}
 	
 	 public static String bytesToHex(byte[] bytes) {

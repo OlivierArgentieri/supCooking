@@ -1,10 +1,15 @@
 package com.supinfo.supcooking.dao.jpa;
 
 import java.util.List;
+import java.util.Map;
 
+import javax.persistence.Cache;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceUnitUtil;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.metamodel.Metamodel;
 
 import com.supinfo.supcooking.dao.UserDAO;
 import com.supinfo.supcooking.entity.User;
@@ -13,8 +18,63 @@ public class JpaUserDao implements UserDAO {
 	
 	private EntityManagerFactory factory;
 	
-	public JpaUserDao(EntityManagerFactory factory) {
-		this.factory = factory;
+	public JpaUserDao() {
+		this.factory = new EntityManagerFactory() {
+			
+			@Override
+			public boolean isOpen() {
+				// TODO Auto-generated method stub
+				return false;
+			}
+			
+			@Override
+			public Map<String, Object> getProperties() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			@Override
+			public PersistenceUnitUtil getPersistenceUnitUtil() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			@Override
+			public Metamodel getMetamodel() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			@Override
+			public CriteriaBuilder getCriteriaBuilder() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			@Override
+			public Cache getCache() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			@Override
+			public EntityManager createEntityManager(Map arg0) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			@Override
+			public EntityManager createEntityManager() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			@Override
+			public void close() {
+				// TODO Auto-generated method stub
+				
+			}
+		};
 	}
 
 	//
@@ -104,5 +164,11 @@ public class JpaUserDao implements UserDAO {
 			if(transaction.isActive()) transaction.rollback();
 		}
 		manager.close();
+	}
+	
+	public boolean existUser(User aUser) {
+		if(findUserById(aUser.getId()) != null)
+			return true;
+		return false;
 	}
 }
