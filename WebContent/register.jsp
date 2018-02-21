@@ -23,13 +23,17 @@
       <div class="container">
           <div class="card card-container">
             <br>
-            <img class="img-responsive" src="assets/image/logo.png"></a>
+            <img class="img-responsive" src="assets/image/logo.png">
             <hr>
             <form class="form-register" method="POST" action="register">
+            	<p>
+            		<span class="error">${messages["username"]}</span>
+        		</p>
                 <input type="text" name="address" id="inputAddress" class="form-control" required autofocus>
                 <input type="text" name="description" id="inputDescription" class="form-control" required>
                 <input type="text" name="firstName" id="inputFirstName" class="form-control" required>
                 <input type="text" name="lastName" id="inputLastName" class="form-control"required>
+                <input type="text" name="username" id="inputUsername" class="form-control"required>
                 <input type="text" name="mail" id="inputMail" class="form-control" required>
                 
                 <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de Passe" required>

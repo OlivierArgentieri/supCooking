@@ -1,14 +1,20 @@
 package com.supinfo.supcooking.servlet;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.supinfo.supcooking.dao.jpa.JpaUserDao;
+import com.supinfo.supcooking.entity.User;
 
 /**
  * Servlet implementation class LoginServlet
@@ -40,23 +46,40 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		 String userName = request.getParameter("username");
-		 /*String password = request.getParameter("password");*/
 		 
-		HttpSession s =request.getSession();
-		if(userName!= "" && userName != null)
-		{
-			s.setAttribute("username",userName);
-		/*s.setAttribute("password",password);*/
+		 JpaUserDao jpa = new JpaUserDao();
+		 
+		 User u = new User();
+		 u.setUsername(request.getParameter("username"));
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/ListProduct");
-      rd.forward(request, response);
+		// pour le SHA-256
+		MessageDigest md;
+		try {
+			md = MessageDigest.getInstance("SHA-256");
+			md.update(request.getParameter("password").getBytes());
+			u.setPassword(bytesToHex(md.digest()));
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		 
+		 User connectedUser = jpa.connexionUser(u);
+		 if( connectedUser != null) {
+			 Cookie cnxCookie = new Cookie("connection", connectedUser.getId().toString());
+			 response.addCookie(cnxCookie);
+			 request.getRequestDispatcher("register.jsp").forward(request, response);
+		 }
 		else
 		{
-			response.sendRedirect("/supcooking/login.html");
+			request.getRequestDispatcher("login.html").forward(request, response);
 		}
 		
 		
 	}
+	public static String bytesToHex(byte[] bytes) {
+        StringBuffer result = new StringBuffer();
+        for (byte byt : bytes) result.append(Integer.toString((byt & 0xff) + 0x100, 16).substring(1));
+        return result.toString();
+    }
 
 }

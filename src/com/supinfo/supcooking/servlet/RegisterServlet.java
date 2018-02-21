@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.supinfo.sun.supcommerce.doa.SupProductDao;
 import com.supinfo.supcooking.dao.UserDAO;
 import com.supinfo.supcooking.dao.jpa.JpaUserDao;
 import com.supinfo.supcooking.entity.*;
@@ -63,8 +62,13 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		// doGet(request, response);
 
+		Map<String, String> messages = new HashMap<String, String>();
+	    String name = request.getParameter("name");
+	   
+
+	    
 		User user;
 		user = new User();
 		user.setAddress(request.getParameter("address"));
@@ -74,6 +78,7 @@ public class RegisterServlet extends HttpServlet {
 		user.setUsername(request.getParameter("username"));
 		user.setMail(request.getParameter("mail"));
 		
+		// pour le SHA-256
 		MessageDigest md;
 		try {
 			md = MessageDigest.getInstance("SHA-256");
@@ -94,7 +99,8 @@ public class RegisterServlet extends HttpServlet {
         EntityTransaction et = em.getTransaction();
         
         JpaUserDao jpauser= new JpaUserDao();
-        if (!jpauser.existUser(user))
+        System.out.println(user.getUsername());
+        if (jpauser.existUser(user) == null)
         {
 	        try {
 	        	et.begin();
@@ -110,10 +116,11 @@ public class RegisterServlet extends HttpServlet {
         }
         else
         {
-        	response.sendError(0, "Utilisateur éxistant");
+	        messages.put("username", "Utilisateur existant");
+        	request.setAttribute("messages", messages);
         }
-        	
-       
+        
+        request.getRequestDispatcher("register.jsp").forward(request, response);
 	}
 	
 	 public static String bytesToHex(byte[] bytes) {

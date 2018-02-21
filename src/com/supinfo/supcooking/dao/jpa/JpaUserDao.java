@@ -8,73 +8,20 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceUnitUtil;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.metamodel.Metamodel;
 
 import com.supinfo.supcooking.dao.UserDAO;
 import com.supinfo.supcooking.entity.User;
+import com.supinfo.supcooking.util.PersistenceManager;
 
 public class JpaUserDao implements UserDAO {
 	
 	private EntityManagerFactory factory;
 	
 	public JpaUserDao() {
-		this.factory = new EntityManagerFactory() {
-			
-			@Override
-			public boolean isOpen() {
-				// TODO Auto-generated method stub
-				return false;
-			}
-			
-			@Override
-			public Map<String, Object> getProperties() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public PersistenceUnitUtil getPersistenceUnitUtil() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public Metamodel getMetamodel() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public CriteriaBuilder getCriteriaBuilder() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public Cache getCache() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public EntityManager createEntityManager(Map arg0) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public EntityManager createEntityManager() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public void close() {
-				// TODO Auto-generated method stub
-				
-			}
-		};
+		this.factory = PersistenceManager.persistenceEntity();
 	}
 
 	//
@@ -166,9 +113,33 @@ public class JpaUserDao implements UserDAO {
 		manager.close();
 	}
 	
-	public boolean existUser(User aUser) {
-		if(findUserById(aUser.getId()) != null)
-			return true;
-		return false;
+	public User existUser(User aUser) {
+		User u;
+		try {
+			EntityManager manager = factory.createEntityManager();
+			Query query = manager.createQuery("SELECT u FROM User u WHERE u.username = :username");
+			query.setParameter("username", aUser.getUsername());
+			u = (User) query.getSingleResult();	
+			
+			manager.close();
+		} catch (Exception e) {
+			throw e;
+		}
+		return u ;
+	}
+	
+	public User connexionUser(User aUser) {
+		User u;
+		try {
+			EntityManager manager = factory.createEntityManager();
+			Query query = manager.createQuery("SELECT u FROM User u WHERE u.username = :username AND u.password= :password");
+			query.setParameter("username", aUser.getUsername());
+			query.setParameter("password", aUser.getPassword());
+			u = (User) query.getSingleResult();	
+			manager.close();
+		} catch (Exception e) {
+			throw e;
+		}
+		return u ;
 	}
 }
