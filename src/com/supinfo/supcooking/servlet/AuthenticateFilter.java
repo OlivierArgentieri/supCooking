@@ -8,9 +8,15 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.supinfo.supcooking.dao.jpa.JpaUserDao;
+import com.supinfo.supcooking.entity.User;
+import com.supinfo.supcooking.util.Hash256Service;
+import com.supinfo.supcooking.util.NullOrEmpty;
 
 /**
  * Servlet Filter implementation class AuthenticateFilter
@@ -38,20 +44,27 @@ public class AuthenticateFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
+		JpaUserDao jpa = new JpaUserDao();
 		
-		 HttpServletRequest httpRequest = (HttpServletRequest) request;
+			// Test dans la session
+		 	HttpServletRequest httpRequest = (HttpServletRequest) request;
 	        HttpServletResponse httpResponse = (HttpServletResponse) response;
 	        HttpSession session = httpRequest.getSession();
-	        Object username = session.getAttribute("username");
+	        User user = (User) session.getAttribute("username");
 	        
-	        if(username == null)
-	        {
-	            httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.html");
+	        // Test dans le cookie
+	        User uc = null;
+	        for (Cookie cookie : httpRequest.getCookies()) {
+				   if (cookie.getName().equals("_AUTH")) {
+					    uc = jpa.getUserByToken(Hash256Service.hash256(cookie.getValue()));
+				    }
+				  }
+	        
+	        if(NullOrEmpty.isNullOrEmpty(user.getPassword()) || NullOrEmpty.isNullOrEmpty(uc.getUsername())  ) {
+	            httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.jsp");
 	            return;
 	        }
-	        
 	        chain.doFilter(request, response);
-		
 	}
 
 	/**
@@ -61,9 +74,7 @@ public class AuthenticateFilter implements Filter {
 		// TODO Auto-generated method stub
 	}
 	
-	public static boolean isNullOrEmpty(String s) {
-	    return s == null || s.length() == 0;
-	}
+	
 
 
 }
