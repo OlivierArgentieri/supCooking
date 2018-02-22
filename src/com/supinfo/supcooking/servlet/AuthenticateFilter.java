@@ -59,8 +59,7 @@ public class AuthenticateFilter implements Filter {
 					    uc = jpa.getUserByToken(Hash256Service.hash256(cookie.getValue()));
 				    }
 				  }
-	        
-	        if(user == null || uc == null ) {
+	        if(user == null && uc == null ) {
 	            httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.jsp");
 	            return;
 	        }
