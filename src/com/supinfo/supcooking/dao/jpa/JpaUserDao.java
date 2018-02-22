@@ -102,6 +102,22 @@ public class JpaUserDao implements UserDAO {
 		manager.close();
 	}
 
+	public User getUserByToken (String token) {
+		User u;
+		try {
+			EntityManager manager = factory.createEntityManager();
+			Query query = manager.createQuery("SELECT u FROM User u WHERE u.token = :token");
+			query.setParameter("token", token);
+			
+			u = (User) query.getSingleResult();	
+			
+			manager.close();
+		} catch (Exception e) {
+			return null;
+		}
+		return u ;
+	}
+	
 	@Override
 	public void removeUser(User aUser) {
 		EntityManager manager = factory.createEntityManager();
@@ -123,8 +139,6 @@ public class JpaUserDao implements UserDAO {
 			EntityManager manager = factory.createEntityManager();
 			Query query = manager.createQuery("SELECT u FROM User u WHERE u.username = :username");
 			query.setParameter("username", aUser.getUsername());
-			
-			
 			u = (User) query.getSingleResult();	
 			
 			manager.close();
@@ -135,7 +149,7 @@ public class JpaUserDao implements UserDAO {
 	}
 	
 	public User connexionUser(User aUser) {
-		User u = null;
+		User u;
 		try {
 			EntityManager manager = factory.createEntityManager();
 			Query query = manager.createQuery("SELECT u FROM User u WHERE u.username = :username AND u.password= :password");

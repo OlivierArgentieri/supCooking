@@ -8,29 +8,27 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.supinfo.supcooking.dao.jpa.JpaUserDao;
 import com.supinfo.supcooking.entity.User;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class IndexServlet
  */
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/index")
+public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public IndexServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,9 +36,28 @@ public class LoginServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.sendRedirect("/supCooking/login.jsp");
+    	Map<String, String> messages = new HashMap<String, String>();
+		JpaUserDao jpa = new JpaUserDao();
+		
+		// Recherche du cookie _AUTH
+		User u = null;
+		if (request.getCookies() != null) {
+			 for (Cookie cookie : request.getCookies()) {
+			   if (cookie.getName().equals("_AUTH")) {
+			    u= jpa.getUserByToken(hash256(cookie.getValue()));
+			    }
+			  }
+			}
+
+		 
+
+		 if (u != null) {
+			 messages.put("username", u.getUsername());
+			 request.setAttribute("messages", messages);
+		 }
+		 request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	/**
@@ -48,34 +65,9 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Map<String, String> messages = new HashMap<String, String>();
-		JpaUserDao jpa = new JpaUserDao();
-		 
-		 User u = new User();
-		 u.setUsername(request.getParameter("username"));
-		 u.setPassword(hash256(request.getParameter("password")));
-		 String key = UUID.randomUUID().toString().toUpperCase() + "|" + u.getUsername() + "|" + LocalDateTime.now();
-		 u.setToken(hash256(key));
-
-		User connectedUser = jpa.connexionUser(u);
-		 if( connectedUser != null) {
-			 Cookie cnxCookie = new Cookie("_AUTH", key);
-			 response.addCookie(cnxCookie);
-			 messages.put("username", connectedUser.getUsername());
-			 request.setAttribute("messages", messages);
-
-			 response.sendRedirect("/supCooking/index");
-		}
-		else
-		{
-			messages.put("user", "Utilisateur non reconnu");
-        	request.setAttribute("messages", messages);
-        	request.getRequestDispatcher("login.jsp").forward(request, response);
-		}
-		
-		
+		doGet(request, response);
 	}
-
+	
 	public static String hash256(String s){
 		MessageDigest md;
 		try {

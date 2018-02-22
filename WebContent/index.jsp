@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html>
 	<head>
@@ -26,7 +26,6 @@
 	<!-- Start Body -->
 
   <body id="page-top">
-
       <!-- Navigation -->
       <div id="flipkart-navbar">
           <div class="container">
@@ -38,7 +37,15 @@
                       <li class="upper-links"><a class="links" href="#"> <i class="fas fa-random"></i> Recette aléatoire</a></li>
                       <li class="upper-links"><a class="links" href="#"> <i class="fas fa-pencil-alt"></i> Ecrire ma recette</a></li>
                       <!-- Moovers --><li class="up"></li>
-                      <li class="upper-links"><a class="links" href="login.html"><i class="fas fa-users"></i> Connexion</a></li>
+                      <c:if test="${messages['username'] != '' }">
+                      ${messages['username']}
+                      </c:if> 
+                      <li> 
+                      	<p>
+            				<span class="error">${messages.username} ewrgwefwefwewef</span>
+        				</p>
+        			  </li>
+                      <li class="upper-links"><a class="links" href="/supCooking/login.jsp"><i class="fas fa-users"></i> Connexion</a></li>
                   </ul>
                 </div>
               </div>
@@ -65,8 +72,8 @@
           </div>
           <a href="http://clashhacks.in/">Recettes</a>
           <a href="http://clashhacks.in/">Aléatoire</a>
-          <a href="http://clashhacks.in/">Ma recette</a>
-          <a href="http://clashhacks.in/">Connexion</a>
+          <a href="#">Ma recette</a>
+          <a href="/supCooking/login.jsp">Connexion</a>
       </div>
 
       <!-- About -->

@@ -21,8 +21,11 @@
       <div class="container">
           <div class="card card-container">
             <br>
-            <img class="img-responsive" src="assets/image/logo.png"></a>
+            <a><img class="img-responsive" src="assets/image/logo.png"/></a>
             <hr>
+            	<p>
+            		<span class="error">${messages["user"]}</span>
+        		</p>
             <form class="form-signin" method="POST" action="login">
                 <span id="reauth-email" class="reauth-email"></span>
                 <input type="text" name="username" id="inputPseudo" class="form-control" placeholder="Nom d'utilisateur" required autofocus>
