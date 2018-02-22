@@ -1,14 +1,11 @@
 package com.supinfo.supcooking.servlet;
 
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -51,7 +48,7 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		Map<String, String> messages = new HashMap<String, String>();
 		JpaUserDao jpa = new JpaUserDao();
-		 
+		
 		User u = new User();
 		u.setUsername(request.getParameter("username"));
 		u.setPassword(Hash256Service.hash256(request.getParameter("password")));
@@ -59,12 +56,21 @@ public class LoginServlet extends HttpServlet {
 		u.setToken(Hash256Service.hash256(key));
 
 		User connectedUser = jpa.connexionUser(u);
-		if( connectedUser != null) {
+		
+		if( connectedUser != null && request.getParameter("rmMe") != null) {
+			System.out.println(connectedUser.getUsername());
 			Cookie cnxCookie = new Cookie("_AUTH", key);
 			response.addCookie(cnxCookie);
 			messages.put("username", connectedUser.getUsername());
 			request.setAttribute("messages", messages);
 
+			response.sendRedirect("/supCooking/index");
+		}
+		
+		else if(connectedUser != null)
+		{
+			HttpSession s =request.getSession();
+			s.setAttribute("user", connectedUser);
 			response.sendRedirect("/supCooking/index");
 		}
 		else

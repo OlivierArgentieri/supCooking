@@ -1,9 +1,6 @@
 package com.supinfo.supcooking.servlet;
 
 import java.io.IOException;
-import java.security.*;
-import java.time.LocalDateTime;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -15,10 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tomcat.jni.Local;
-import org.eclipse.persistence.jpa.jpql.parser.DateTime;
-
-import com.supinfo.supcooking.dao.UserDAO;
 import com.supinfo.supcooking.dao.jpa.JpaUserDao;
 import com.supinfo.supcooking.entity.*;
 import com.supinfo.supcooking.util.Hash256Service;

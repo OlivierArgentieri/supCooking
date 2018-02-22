@@ -30,9 +30,10 @@
                 <span id="reauth-email" class="reauth-email"></span>
                 <input type="text" name="username" id="inputPseudo" class="form-control" placeholder="Nom d'utilisateur" required autofocus>
                 <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de Passe" required>
+                <input type="checkbox" name="rmMe" id="inputRmMe" class="form-control" placeholder="se souvenir de moi" checked>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Connexion</button>
             </form>
           </div>
-      </div>      
+      </div>
   </body>
 </html>

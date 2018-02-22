@@ -10,6 +10,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.supinfo.supcooking.dao.jpa.JpaUserDao;
 import com.supinfo.supcooking.entity.User;
@@ -40,7 +41,15 @@ public class IndexServlet extends HttpServlet {
 		
 		// Recherche du cookie _AUTH
 		User u = null;
-		if (request.getCookies() != null) {
+		HttpSession s  = request.getSession();
+		
+		if(s.getAttribute("user") != null)
+		{
+			u = (User) s.getAttribute("user");
+			messages.put("username", u.getUsername());
+			request.setAttribute("messages", messages);
+		}
+		else if (request.getCookies() != null) {
 			 for (Cookie cookie : request.getCookies()) {
 			   if (cookie.getName().equals("_AUTH")) {
 			    u= jpa.getUserByToken(Hash256Service.hash256(cookie.getValue()));
