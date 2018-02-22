@@ -60,11 +60,11 @@ public class AuthenticateFilter implements Filter {
 				    }
 				  }
 	        
-	        if(NullOrEmpty.isNullOrEmpty(user.getPassword()) || NullOrEmpty.isNullOrEmpty(uc.getUsername())  ) {
+	        if(user == null || uc == null ) {
 	            httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.jsp");
 	            return;
 	        }
-	        chain.doFilter(request, response);
+	       chain.doFilter(request, response);
 	}
 
 	/**
