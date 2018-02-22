@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 
 import com.supinfo.supcooking.dao.jpa.JpaUserDao;
 import com.supinfo.supcooking.entity.User;
+import com.supinfo.supcooking.util.Hash256Service;
 
 /**
  * Servlet implementation class LoginServlet
@@ -51,20 +52,20 @@ public class LoginServlet extends HttpServlet {
 		Map<String, String> messages = new HashMap<String, String>();
 		JpaUserDao jpa = new JpaUserDao();
 		 
-		 User u = new User();
-		 u.setUsername(request.getParameter("username"));
-		 u.setPassword(hash256(request.getParameter("password")));
-		 String key = UUID.randomUUID().toString().toUpperCase() + "|" + u.getUsername() + "|" + LocalDateTime.now();
-		 u.setToken(hash256(key));
+		User u = new User();
+		u.setUsername(request.getParameter("username"));
+		u.setPassword(Hash256Service.hash256(request.getParameter("password")));
+		String key = UUID.randomUUID().toString().toUpperCase() + "|" + u.getUsername() + "|" + LocalDateTime.now();
+		u.setToken(Hash256Service.hash256(key));
 
 		User connectedUser = jpa.connexionUser(u);
-		 if( connectedUser != null) {
-			 Cookie cnxCookie = new Cookie("_AUTH", key);
-			 response.addCookie(cnxCookie);
-			 messages.put("username", connectedUser.getUsername());
-			 request.setAttribute("messages", messages);
+		if( connectedUser != null) {
+			Cookie cnxCookie = new Cookie("_AUTH", key);
+			response.addCookie(cnxCookie);
+			messages.put("username", connectedUser.getUsername());
+			request.setAttribute("messages", messages);
 
-			 response.sendRedirect("/supCooking/index");
+			response.sendRedirect("/supCooking/index");
 		}
 		else
 		{
@@ -75,24 +76,4 @@ public class LoginServlet extends HttpServlet {
 		
 		
 	}
-
-	public static String hash256(String s){
-		MessageDigest md;
-		try {
-			md = MessageDigest.getInstance("SHA-256");
-			md.update(s.getBytes());
-			return bytesToHex(md.digest());
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static String bytesToHex(byte[] bytes) {
-        StringBuffer result = new StringBuffer();
-        for (byte byt : bytes) result.append(Integer.toString((byt & 0xff) + 0x100, 16).substring(1));
-        return result.toString();
-    }
-
 }

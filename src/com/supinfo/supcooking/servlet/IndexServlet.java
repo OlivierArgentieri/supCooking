@@ -1,12 +1,8 @@
 package com.supinfo.supcooking.servlet;
 
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.supinfo.supcooking.dao.jpa.JpaUserDao;
 import com.supinfo.supcooking.entity.User;
+import com.supinfo.supcooking.util.Hash256Service;
 
 /**
  * Servlet implementation class IndexServlet
@@ -46,13 +43,11 @@ public class IndexServlet extends HttpServlet {
 		if (request.getCookies() != null) {
 			 for (Cookie cookie : request.getCookies()) {
 			   if (cookie.getName().equals("_AUTH")) {
-			    u= jpa.getUserByToken(hash256(cookie.getValue()));
+			    u= jpa.getUserByToken(Hash256Service.hash256(cookie.getValue()));
 			    }
 			  }
 			}
-
-		 
-
+		
 		 if (u != null) {
 			 messages.put("username", u.getUsername());
 			 request.setAttribute("messages", messages);
@@ -67,24 +62,4 @@ public class IndexServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-	
-	public static String hash256(String s){
-		MessageDigest md;
-		try {
-			md = MessageDigest.getInstance("SHA-256");
-			md.update(s.getBytes());
-			return bytesToHex(md.digest());
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static String bytesToHex(byte[] bytes) {
-        StringBuffer result = new StringBuffer();
-        for (byte byt : bytes) result.append(Integer.toString((byt & 0xff) + 0x100, 16).substring(1));
-        return result.toString();
-    }
-
 }

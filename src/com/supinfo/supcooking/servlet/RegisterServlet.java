@@ -21,6 +21,8 @@ import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 import com.supinfo.supcooking.dao.UserDAO;
 import com.supinfo.supcooking.dao.jpa.JpaUserDao;
 import com.supinfo.supcooking.entity.*;
+import com.supinfo.supcooking.util.Hash256Service;
+
 import java.util.*;
 
 @WebServlet("/register")
@@ -79,7 +81,7 @@ public class RegisterServlet extends HttpServlet {
 		user.setUsername(request.getParameter("username"));
 		user.setMail(request.getParameter("mail"));
 		// pour le SHA-256
-		user.setPassword(hash256(request.getParameter("password")));
+		user.setPassword(Hash256Service.hash256(request.getParameter("password")));
 		
 		user.setPostCode(request.getParameter("postCode"));
 		user.setPhoneNumber(request.getParameter("phoneNumber"));
@@ -114,22 +116,5 @@ public class RegisterServlet extends HttpServlet {
         request.getRequestDispatcher("register.jsp").forward(request, response);
 	}
 	
-	public static String hash256(String s){
-		MessageDigest md;
-		try {
-			md = MessageDigest.getInstance("SHA-256");
-			md.update(s.getBytes());
-			return bytesToHex(md.digest());
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-	}
 	
-	public static String bytesToHex(byte[] bytes) {
-        StringBuffer result = new StringBuffer();
-        for (byte byt : bytes) result.append(Integer.toString((byt & 0xff) + 0x100, 16).substring(1));
-        return result.toString();
-    }
 }
