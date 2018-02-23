@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" /prefix="c" %>  
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,13 +15,13 @@
     <!-- GoogleFonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <!-- Bootstrap Core CSS -->
-		<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<!-- FontAwesome Core -->
-    <link href="assets/vendor/fontawesome506/css/fontawesome-all.css" rel="stylesheet">
+    <link href="/assets/vendor/fontawesome506/css/fontawesome-all.css" rel="stylesheet">
     <!-- Custom style theme -->
-    <link href="assets/css/supcooking.css" rel="stylesheet">
+    <link href="/assets/css/supcooking.css" rel="stylesheet">
     <!-- Custom plugins style theme -->
-    <link href="assets/css/plugins.css" rel="stylesheet">
+    <link href="/assets/css/plugins.css" rel="stylesheet">
 	</head>
 	<!-- Start Body -->
 
