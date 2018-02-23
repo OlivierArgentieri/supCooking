@@ -58,7 +58,6 @@ public class LoginServlet extends HttpServlet {
 		User connectedUser = jpa.connexionUser(u);
 		
 		if( connectedUser != null && request.getParameter("rmMe") != null) {
-			System.out.println(connectedUser.getUsername());
 			Cookie cnxCookie = new Cookie("_AUTH", key);
 			response.addCookie(cnxCookie);
 			messages.put("username", connectedUser.getUsername());
