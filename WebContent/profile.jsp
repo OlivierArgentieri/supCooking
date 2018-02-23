@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@page import="com.supinfo.supcooking.entity.User"%>
+<%@page import="com.supinfo.supcooking.entity.Recipe"%>
+<%@page import="java.util.List"%>
+<% User u = (User) request.getAttribute("user"); %>
+<% List<Recipe> mesRecettes = (List<Recipe>) request.getAttribute("recipe"); %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -75,7 +79,14 @@
         <div class="row">
           <div class="col-sm-12 text-center">
             <hr>
-            <h3 class="spacing_title">Profil de Jean ${user["username"]}</h3>
+            <h3 class="spacing_title">Profil de Jean  <p><%=u.getUsername() %></p></h3>
+            <%	if(mesRecettes != null){ 
+					for(Recipe r : mesRecettes) { %>
+				<span class="card-title"><%=r.getName() %></span>
+		        <p><%=r.getRecipeDescription() %></p>
+
+            <%}
+					} %>
             <hr>
           </div>
         </div>

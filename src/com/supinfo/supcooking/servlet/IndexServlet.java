@@ -46,9 +46,7 @@ public class IndexServlet extends HttpServlet {
 		if(s.getAttribute("user") != null)
 		{
 			u = (User) s.getAttribute("user");
-			messages.put("username", u.getUsername());
-			messages.put("id", u.getId().toString());
-			request.setAttribute("messages", messages);
+			request.setAttribute("user", u);
 		}
 		else if (request.getCookies() != null) {
 			 for (Cookie cookie : request.getCookies()) {
@@ -59,8 +57,8 @@ public class IndexServlet extends HttpServlet {
 			}
 		
 		 if (u != null) {
-			 messages.put("username", u.getUsername());
-			 request.setAttribute("messages", messages);
+			
+			 request.setAttribute("user", u);
 		 }
 		 request.getRequestDispatcher("index.jsp").forward(request, response);
 	}

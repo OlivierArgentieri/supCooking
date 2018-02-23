@@ -36,7 +36,7 @@ public class ViewUserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Map<String, Object> userAtt = new HashMap<String, Object>();
+		Map<String, User> userAtt = new HashMap<String, User>();
 		JpaUserDao jpa = new JpaUserDao();
 		
 		// Recherche du cookie _AUTH
@@ -52,6 +52,7 @@ public class ViewUserServlet extends HttpServlet {
 			
 			if(u != null)
 			{
+				/*
 				userAtt.put("username", u.getUsername());
 				userAtt.put("address", u.getAddress());
 				userAtt.put("description", u.getDescription());
@@ -59,14 +60,17 @@ public class ViewUserServlet extends HttpServlet {
 				userAtt.put("lastNAme", u.getLastName());
 				userAtt.put("mail", u.getMail());
 				userAtt.put("phoneNumer", u.getPhoneNumber());
-				userAtt.put("postCode", u.getPostCode());
-				userAtt.put("recipe", u.getRecipes());
-				request.setAttribute("user", userAtt);
+				
+				userAtt.put("recipe", u.getRecipes());*/
+				//userAtt.put("user", u);
+				request.setAttribute("user", u);
+
+				request.setAttribute("recipe", u.getRecipes());
 			}
 		}
 		
 		else {
-			userAtt.put("error", "utilisateur introuvable");
+			userAtt.put("user", null);
 		}
 		request.getRequestDispatcher("profile.jsp").forward(request, response);
 	}
