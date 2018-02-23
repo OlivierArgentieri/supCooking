@@ -1,6 +1,9 @@
 package com.supinfo.supcooking.servlet;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -33,6 +36,7 @@ public class ProfileServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		Map<String, String> userAtt = new HashMap<String, String>();
 		JpaUserDao jpa = new JpaUserDao();
 		
 		// Recherche du cookie _AUTH
@@ -42,7 +46,16 @@ public class ProfileServlet extends HttpServlet {
 		if(s.getAttribute("user") != null)
 		{
 			u = (User) s.getAttribute("user");
-			request.setAttribute("messages", u);
+			userAtt.put("username", u.getUsername());
+			userAtt.put("address", u.getAddress());
+			userAtt.put("description", u.getDescription());
+			userAtt.put("firstName", u.getFirstName());
+			userAtt.put("lastNAme", u.getLastName());
+			userAtt.put("mail", u.getMail());
+			userAtt.put("phoneNumer", u.getPhoneNumber());
+			userAtt.put("postCode", u.getPostCode());
+			
+			request.setAttribute("user", userAtt);
 		}
 		
 		else if (request.getCookies() != null) {
@@ -52,7 +65,16 @@ public class ProfileServlet extends HttpServlet {
 					}
 			}
 			if (u != null) {
-				request.setAttribute("messages", u);
+				userAtt.put("username", u.getUsername());
+				userAtt.put("address", u.getAddress());
+				userAtt.put("description", u.getDescription());
+				userAtt.put("firstName", u.getFirstName());
+				userAtt.put("lastNAme", u.getLastName());
+				userAtt.put("mail", u.getMail());
+				userAtt.put("phoneNumer", u.getPhoneNumber());
+				userAtt.put("postCode", u.getPostCode());
+				
+				request.setAttribute("user", userAtt);
 				}
 			}
 		request.getRequestDispatcher("/auth/profile.jsp").forward(request, response);

@@ -39,7 +39,7 @@ public class Recipe implements Serializable{
 	@ManyToMany(mappedBy="recipes")
 	private List<Ingredient> ingredients;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn
     private Rate rate;
 	

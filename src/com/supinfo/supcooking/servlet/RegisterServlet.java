@@ -85,7 +85,6 @@ public class RegisterServlet extends HttpServlet {
         EntityTransaction et = em.getTransaction();
         
         JpaUserDao jpauser= new JpaUserDao();
-        System.out.println(user.getUsername());
         if (jpauser.existUser(user) == null)
         {
 	        try {

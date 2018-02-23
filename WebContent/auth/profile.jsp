@@ -26,158 +26,142 @@
 	<!-- Start Body -->
 
   <body id="page-top">
-      <!-- Navigation -->
-      <div id="flipkart-navbar">
-          <div class="container">
-              <div class="row row1">
-                <div class="col-sm-12">
-                  <ul class="largenav flipkart-menu-ul">
-                      <li class="upper-links"><a class="links" href="index.html"> <i class="fas fa-home"></i> Accueil</a></li>
-                      <li class="upper-links"><a class="links" href="listeRecettes.html"> <i class="fas fa-tasks"></i> Toutes les recettes</a></li>
-                      <li class="upper-links"><a class="links" href="#"> <i class="fas fa-random"></i> Recette aléatoire</a></li>
-                      <li class="upper-links"><a class="links" href="#"> <i class="fas fa-pencil-alt"></i> Ecrire ma recette</a></li>
-                      <!-- Moovers --><li class="up"></li>
-                      <c:if test="${messages['username'] != '' }">
-                      ${messages['username']}
-                      </c:if> 
-                      <li> 
-                      	<p>
-            				<span class="error">${messages.username} ewrgwefwefwewef</span>
-        				</p>
-        			  </li>
-                      <li class="upper-links"><a class="links" href="/supCooking/login.jsp"><i class="fas fa-users"></i> Connexion</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="row row2 d-flex align-items-center">
-                  <div class="col-sm-3">
-                      <h2 style="margin:0px;"><span class="smallnav menu" onclick="openNav()">☰ <img class="img-fluid" src="assets/image/logo.png"></span></h2>
-                      <h1 style="margin:0px;"><span class="largenav"><img class="img-fluid" src="assets/image/logo.png"></span></h1>
-                  </div>
-                  <div class="flipkart-navbar-search smallsearch col-sm-9 col-xs-12">
-                      <div class="row">
-                          <input id="search" class="flipkart-navbar-input col-sm-11 col-xs-10" placeholder="Qu'allez vous manger ce soir ? Un bon petit plat ? Une pizza ?" name="search">
-                          <button class="flipkart-navbar-button col-sm-1 col-xs-2">
-                            <i class="fas fa-search"></i>
-                          </button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div id="mySidenav" class="sidenav">
-          <div class="container" style="background-color: #2874f0; padding-top: 10px;">
-              <span class="sidenav-heading">G2Oeufs</span>
-              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-          </div>
-          <a href="http://clashhacks.in/">Recettes</a>
-          <a href="http://clashhacks.in/">Aléatoire</a>
-          <a href="#">Ma recette</a>
-          <a href="/supCooking/login.jsp">Connexion</a>
-      </div>
 
-      <!-- About -->
-      <div class="dad">
-        <div class="row" style="margin: 60px 0; text-align: center;">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <h1 class="full-title">“La bonne cuisine est honnête, sincère et simple.”</h1>
+    <!-- Navigation -->
+    <div id="flipkart-navbar">
+        <div class="container">
+            <div class="row row1">
+              <div class="col-sm-12">
+                <ul class="largenav flipkart-menu-ul">
+                    <li class="upper-links"><a class="links" href="index.html"> <i class="fas fa-home"></i> Accueil</a></li>
+                    <li class="upper-links"><a class="links" href="#"> <i class="fas fa-tasks"></i> Toutes les recettes</a></li>
+                    <li class="upper-links"><a class="links" href="#"> <i class="fas fa-random"></i> Recette al�atoire</a></li>
+                    <li class="upper-links"><a class="links" href="#"> <i class="fas fa-pencil-alt"></i> Ecrire ma recette</a></li>
+                    <!-- Moovers --><li class="up"></li>
+                    <li class="upper-links"><a class="links" href="login.html"><i class="fas fa-users"></i> Connexion</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="row row2 d-flex align-items-center">
+                <div class="col-sm-3">
+                    <h2 style="margin:0px;"><span class="smallnav menu" onclick="openNav()"> <img class="img-fluid" src="assets/image/logo.png"></span></h2>
+                    <h1 style="margin:0px;"><span class="largenav"><img class="img-fluid" src="assets/image/logo.png"></span></h1>
+                </div>
+                <div class="flipkart-navbar-search smallsearch col-sm-9 col-xs-12">
+                    <div class="row">
+                        <input id="search" class="flipkart-navbar-input col-sm-11 col-xs-10" type="" placeholder="Qu'allez vous manger ce soir ? Un bon petit plat ? Une pizza ?" name="search">
+                        <button class="flipkart-navbar-button col-sm-1 col-xs-2">
+                          <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="mySidenav" class="sidenav">
+        <div class="container" style="background-color: #2874f0; padding-top: 10px;">
+            <span class="sidenav-heading">G2Oeufs</span>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">�</a>
+        </div>
+        <a href="http://clashhacks.in/">Recettes</a>
+        <a href="http://clashhacks.in/">Al�atoire</a>
+        <a href="http://clashhacks.in/">Ma recette</a>
+        <a href="http://clashhacks.in/">Connexion</a>
+    </div>
+    
+    <!-- profil -->
+    <div class="container">
+      <div class="receipe_detail">
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <hr>
+            <h3 class="spacing_title">Profil de Jean ${user["username"]}</h3>
+            <hr>
           </div>
         </div>
-        <div class="row" style="margin: 60px 0; text-align: center;">
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="text-align: center;">
-              <a class="fig">
-                3547
-                <span style="font-size: 14px;"><br/>RECETTES AJOUTEES</span>
-              </a>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="text-align: center;">
-              <a class="fig">
-                1152
-                <span style="font-size: 14px;"><br/>UTILISATEURS ACTIFS</span>
-              </a>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="text-align: center;">
-              <a class="fig">
-                170
-                <span style="font-size: 14px;"><br/>INGREDIENTS DIFFERENTS</span>
-              </a>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="text-align: center;">
-              <a class="fig">
-                74%
-                <span style="font-size: 14px;"><br/>DE SATISFACTION</span>
-              </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- About Description Section -->
-      <section class="bg-primary mb-0" id="about">
-        <div class="bg-banner">
-          <div class="container text-wrapper">
-            <div class="title-arch"><h3>Notre vision de la cuisine</h3></div>
-            <div class="row">
-              <div class="col-lg-4 text-justify ml-auto">
-                <p class="lead"><i>Préparer soi-même les repas demande un peu plus de temps que d'ouvrir un plat cuisiné acheté à l'épicerie.
-                  Mais cuisiner est un plaisir, et c'est sans doute une des meilleures manière de transmettre notre amour aux gens qui nous entourent. 
-                  C'est aussi un moyen de transmettre son savoir-faire !</i></p>
+        <!-- Statistics -->
+        <div class="row">
+            <div class="col-lg-4 col-md-6 text-center">
+              <div class="mt-5 mx-auto">
+                <i class="fas fa-4x fa-tasks text-primary mb-3 sr-icons"></i>
+                <h3 class="mb-3">1575 Recettes</h3>
+                <p class="text-muted mb-0">Mais que vois-je un vrai cuistot est pr�sent ici, que dit-je un chef !</p>
               </div>
-              <div class="col-lg-4 text-justify mr-auto">
-                <p class="lead"><i>C'est ici que nous intervenons, G2Oeufs à été pensé pour vous permettre de partager vos recettes, votre envie de la bonne cuisine et aider votre prochain.
-                  <br> Que vous 
-                  soyez un petit cuisinier ou un chef renommé tout le monde peut partager son envie de la bonne cuisine.</i> </p>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+              <div class="mt-5 mx-auto">
+                <i class="fas fa-4x fa-thumbs-up text-primary mb-3 sr-icons"></i>
+                <h3 class="mb-3">54 Retours positifs</h3>
+                <p class="text-muted mb-0">Un certain nombre de personnes ont l'air d'appr�cier ses recettes.</p>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-12 text-center">
+              <div class="mt-5 mx-auto">
+                <i class="fas fa-4x fa-thumbs-down text-primary mb-3 sr-icons"></i>
+                <h3 class="mb-3">23 Retours n�gatifs</h3>
+                <p class="text-muted mb-0">On ne le r�p�tera pas mais les go�ts et les couleurs ne se discutent pas..</p>
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <!-- Top Product -->
-      <div class="bg-secondary">       
-          <div class="title-arch"><h2>Notre séléction de recettes de la semaine</h2></div>
-          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 project wow animated animated4 fadeInLeft"
-          style="background-image: url('assets/image/gratin1.jpg');">
-                <div class="project-hover">
-                  <h3>Gratin Dauphinois</h3>
-                    
-                    <hr />
-                    <p> La recette de vrai gratin Dauphinois, tel qu'il était préparée par nos grand-mères. Un plat économique, facile, plutôt rapide (demande peu de préparation), et dont tout le monde raffole..</p>
-                    <a href="#">Voir la recette</a>
-                </div>
-            </div>
-          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 project wow animated animated3 fadeInLeft" 
-          style="background-image: url('assets/image/pizza1.jpg');">
-              <div class="project-hover">
-                  <h3>Pizza Jambon Fromage</h3>
-                    <hr />
-                    <p>Pour passer une bonne soirée avec vos amis, pensez aux classiques, comme la pizza jambon fromage. Découvrez la recette sans plus attendre.</p>
-                    <a href="#">Voir la recette</a>
-                </div>
-            </div>
-          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 project wow animated animated2 fadeInLeft" 
-          style="background-image: url('assets/image/salade1.jpg');">
-              <div class="project-hover">
-                  <h3>Salade de concombre au chèvre et olives</h3>
-                    <hr />
-                    <p>Cet salade composé avec ses ingrédients frais et varié ravivra les papilles des plus gourmants ! Un plat rapide à préparer et délicieux.</p>
-                    <a href="#">Voir la recette</a>
-                </div>
-            </div>
-          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 project wow animated fadeInLeft" 
-          style="background-image: url(assets/image/pates1.jpg);">
-            <div class="project-hover">
-                <h3>Pâtes sauce Madère</h3>
-                  <hr />
-                  <p>Une sauce se mariant parfaitement avec quelques pâtes ou les viande rouges!</p>
-                  <a href="#">Voir la recette</a>
+        <!-- Recipes -->
+        <div class="row">
+            <div class="col-sm-12 text-center">
+              <br><hr>
+              <h3 class="spacing_title">Recettes �crites par Jean Bonnot</h3>
+              <hr>
             </div>
           </div>
-          <div class="clearfix"></div>
-          <div class="container text-center">
-            <i class="far fa-plus-square fa-5x" style="margin: 25px;"></i>
+        <div class="row text-center">
+          <div class="col-md-3">
+            <br><a href="#"><img class="img-fluid rounded receipe_first_img" src="assets/image/pizza1.jpg"></a>
+            <h5 class="receipe_more_title"><a href="#">Pizza Jambon Fromage</a></h5>
+            <div class="form-control text-center">
+                <i class="far fa-thumbs-up fa-lg"></i> <span class="thumbs-number">[10]</span> &nbsp; &nbsp; <i class="far fa-thumbs-down fa-lg"></i> <span class="thumbs-number">[5]</span>
+            </div>
+            <div class="btn-group" role="group" aria-label="cookingmore">
+              <button type="button" class="btn btn-default"><i class="fas fa-clock"></i> 10 minutes</button>
+              <button type="button" class="btn btn-default"><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></button>
+            </div>
           </div>
+          <div class="col-md-3">
+            <br><a href="#"><img class="img-fluid rounded receipe_first_img" src="assets/image/gratin2.jpg"></a>
+            <h5 class="receipe_more_title"><a href="#">Gratin de courgette</a></h5>
+            <div class="form-control text-center">
+                <i class="far fa-thumbs-up fa-lg"></i> <span class="thumbs-number">[6]</span> &nbsp; &nbsp; <i class="far fa-thumbs-down fa-lg"></i> <span class="thumbs-number">[2]</span>
+            </div>
+            <div class="btn-group" role="group" aria-label="cookingmore">
+              <button type="button" class="btn btn-default"><i class="fas fa-clock"></i> 45 minutes</button>
+              <button type="button" class="btn btn-default"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></button>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <br><a href="#"><img class="img-fluid rounded receipe_first_img" src="assets/image/salade2.jpg"></a>
+            <h5 class="receipe_more_title"><a href="#">Salade de concombre au ch�vre et olives</a></h5>
+            <div class="form-control text-center">
+                <i class="far fa-thumbs-up fa-lg"></i> <span class="thumbs-number">[14]</span> &nbsp; &nbsp; <i class="far fa-thumbs-down fa-lg"></i> <span class="thumbs-number">[8]</span>
+            </div>
+            <div class="btn-group" role="group" aria-label="cookingmore">
+              <button type="button" class="btn btn-default"><i class="fas fa-clock"></i> 5 minutes</button>
+              <button type="button" class="btn btn-default"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></button>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <br><a href="#"><img class="img-fluid rounded receipe_first_img" src="assets/image/pates1.jpg"></a>
+            <h5 class="receipe_more_title"><a href="#">P�tes sauce Mad�re</a></h5>
+            <div class="form-control text-center">
+                <i class="far fa-thumbs-up fa-lg"></i> <span class="thumbs-number">[54]</span> &nbsp; &nbsp; <i class="far fa-thumbs-down fa-lg"></i> <span class="thumbs-number">[15]</span>
+            </div>
+            <div class="btn-group" role="group" aria-label="cookingmore">
+              <button type="button" class="btn btn-default"><i class="fas fa-clock"></i> 20 minutes</button>
+              <button type="button" class="btn btn-default"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></button>
+            </div>
+          </div>
+
+        </div>
       </div>
-  
+    </div>
+
     <!-- Footer -->
     <footer class="footer ">
         <div class="container">
@@ -232,20 +216,10 @@
         </a>
       </div>
 
-
       <!-- Scripting -->
-      <script type="text/javascript">
-        function openNav() {
-          document.getElementById("mySidenav").style.width = "70%";
-          // document.getElementById("flipkart-navbar").style.width = "50%";
-          document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-        }
-
-        function closeNav() {
-          document.getElementById("mySidenav").style.width = "0";
-          document.body.style.backgroundColor = "rgba(0,0,0,0)";
-        }
-      </script>
+      <script src="assets/vendor/jquery/jquery.min.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.js"></script>
+      <script src="assets/js/plugins.js"></script>
 
 	<!-- End Body -->
 	</body>

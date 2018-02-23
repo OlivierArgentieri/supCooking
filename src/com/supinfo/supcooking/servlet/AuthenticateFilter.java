@@ -50,7 +50,7 @@ public class AuthenticateFilter implements Filter {
 		 	HttpServletRequest httpRequest = (HttpServletRequest) request;
 	        HttpServletResponse httpResponse = (HttpServletResponse) response;
 	        HttpSession session = httpRequest.getSession();
-	        User user = (User) session.getAttribute("username");
+	        User user = (User) session.getAttribute("user");
 	        
 	        // Test dans le cookie
 	        User uc = null;
@@ -59,6 +59,7 @@ public class AuthenticateFilter implements Filter {
 					    uc = jpa.getUserByToken(Hash256Service.hash256(cookie.getValue()));
 				    }
 				  }
+	        
 	        if(user == null && uc == null ) {
 	            httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.jsp");
 	            return;

@@ -35,17 +35,18 @@
                       <li class="upper-links"><a class="links" href="index.html"> <i class="fas fa-home"></i> Accueil</a></li>
                       <li class="upper-links"><a class="links" href="listeRecettes.html"> <i class="fas fa-tasks"></i> Toutes les recettes</a></li>
                       <li class="upper-links"><a class="links" href="#"> <i class="fas fa-random"></i> Recette al√©atoire</a></li>
-                      <li class="upper-links"><a class="links" href="#"> <i class="fas fa-pencil-alt"></i> Ecrire ma recette</a></li>
+                      <li class="upper-links"><a class="links" href="/supCooking/auth/newRecipe"><i class="fas fa-pencil-alt"></i> Ecrire ma recette</a></li>
                       <!-- Moovers --><li class="up"></li>
-                      <c:if test="${messages['username'] != '' }">
-                      ${messages['username']}
-                      </c:if> 
-                      <li> 
-                      	<p>
-            				<span class="error">${messages.username} ewrgwefwefwewef</span>
-        				</p>
-        			  </li>
-                      <li class="upper-links"><a class="links" href="/supCooking/login.jsp"><i class="fas fa-users"></i> Connexion</a></li>
+                      <c:choose>
+                      <c:when test="${messages['username']  != null }">
+					        ${messages['username']}
+					        <li class="upper-links"><a class="links" href="/supCooking/logout"><i class="fas fa-users"></i> DÈconnection</a></li>
+					    </c:when>    
+					    <c:otherwise>
+					        <li class="upper-links"><a class="links" href="/supCooking/login.jsp"><i class="fas fa-users"></i> Connexion</a></li>
+					        <br />
+					    </c:otherwise>
+					  </c:choose>
                   </ul>
                 </div>
               </div>

@@ -8,13 +8,14 @@ import javax.persistence.EntityTransaction;
 
 import com.supinfo.supcooking.dao.RecipeDAO;
 import com.supinfo.supcooking.entity.Recipe;
+import com.supinfo.supcooking.util.PersistenceManager;
 
 public class JpaRecipeDao implements RecipeDAO {
 	
 	private EntityManagerFactory factory;
 	
-	public JpaRecipeDao(EntityManagerFactory factory) {
-		this.factory = factory;
+	public JpaRecipeDao() {
+		this.factory = PersistenceManager.persistenceEntity();
 	}
 
 	//

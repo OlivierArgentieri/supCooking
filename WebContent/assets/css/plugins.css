@@ -1,0 +1,315 @@
+/* ------ Fonts ------ */
+@font-face {
+  font-family: "The Blacklist";
+  src: url("../fonts/theBlacklist.ttf");
+}
+
+
+/* ------ Top Recipe ------*/
+.title-arch {
+  text-align: center;
+  /* haut | droit | bas | gauche */
+  margin: 0px 0px 50px 0px;
+  padding: 50px 0px 0px 0px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.project {
+width: 100%;
+height: 500px;
+background-size: cover;
+background-position: center;
+padding: 0 !important;
+float:left;
+}
+
+.project-2 {
+background-image: url('../../assets/image/pizza1.jpg');
+}
+
+.project-3 {
+background-image: url(https://image.freepik.com/free-vector/abstract-geometric-background-design_1045-764.jpg);
+}
+
+.project-4 {
+background-image: url(https://image.freepik.com/free-vector/abstract-geometric-background-design_1045-764.jpg);
+}
+
+.project-hover {
+width: 100%;
+height: 100%;
+color: #fff;
+opacity: 0;
+-webkit-transition: all 0.5s ease;
+-moz-transition: all 0.5s ease;
+-o-transition: all 0.5s ease;
+transition: all 0.5s ease;
+background-color: rgba(5, 129, 171, 0.7);
+padding: 40% 30px !important;
+}
+
+.project-hover hr {
+height: 25px;
+width: 0;
+-webkit-transition: all 0.5s ease;
+-moz-transition: all 0.5s ease;
+-o-transition: all 0.5s ease;
+transition: all 0.5s ease;
+background-color: rgba(255, 255, 255, 1);
+border: 0;
+}
+
+.project-hover a {
+color: rgba(255, 255, 255, 1);
+padding: 2px 22px;
+line-height: 40px;
+border: 2px solid rgba(255, 255, 255, 1);
+-webkit-transition: all 0.5s ease-in-out;
+-moz-transition: all 0.5s ease-in-out;
+-o-transition: all 0.5s ease-in-out;
+transition: all 0.5s ease-in-out;
+}
+
+.project-hover a:hover {
+border-color: rgba(51, 51, 51, 1);
+color: rgba(51, 51, 51, 1);
+background-color: #FFF;
+}
+
+.project:hover .project-hover {
+opacity: 1;
+}
+
+.project:hover .project-hover hr {
+width: 100%;
+height: 5px;
+}
+
+/* ------ Statistics ------ */
+
+.dad {
+  color: #fcfcfc;
+  padding: 50px 0px;
+  background: url("../../assets/image/backabout.jpg") center center;
+  
+}
+
+.full-title {
+  font-family: "The Blacklist";
+  font-size: 45px;
+}
+
+.fig {
+  color: #fcfcfc;
+	font-weight: 400;
+	font-size: 4em;
+	text-align: center;
+	border-radius: 30px;
+	display: inline-block;
+	padding: 15px;
+	width: 250px;
+	border-left: 1px solid #fcfcfc;	
+	border-right: 1px solid #fcfcfc;
+	-webkit-transition: all 1s ease;
+	transition: all 1s ease;
+}
+
+.fig:hover {
+	border-radius: 0px;
+	color: #333;
+	background: rgb(252, 252, 252, 0,5);
+	cursor: pointer;
+    text-decoration: none;
+}
+
+/* ------ Wrappertext ------*/
+
+.text-wrapper {
+  border-top: 1px solid rgb(176, 176, 176);
+  border-bottom: 1px solid  rgb(176, 176, 176);
+  border-right: 1px solid  rgb(176, 176, 176);
+  border-left: 1px solid  rgb(176, 176, 176);
+  background-color:  rgba(245, 245, 245, 0.6);
+  padding: 20px 0px 50px 0px;
+  border-radius: 4px;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* ------ Receipes ------ */
+.receipe_liste_bloc {
+  margin-bottom: 4%;
+  margin-top: 20px;
+  border-top: 1px solid #DDD;
+  border-bottom: 1px solid #DDD;
+  border-right: 1px solid #DDD;
+  border-left: 1px solid #DDD;
+  border-radius: 2px;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.receipe_detail {
+  margin-top: 4%;
+  margin-bottom: 4%;
+  padding: 2% 2%;
+  border-top: 1px solid #DDD;
+  border-bottom: 1px solid #DDD;
+  border-right: 1px solid #DDD;
+  border-left: 1px solid #DDD;
+  border-radius: 2px;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.receipe_detail a {
+  color: #333333;
+}
+
+.receipe_detail a:focus, a:hover, a:active {
+  color: #333333;
+}
+
+.spacing_title {
+  /* haut | droit | bas | gauche */
+  margin: 5px 0px 5px 0px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.recipe_head_section {
+  margin-top: 4%;
+  margin-bottom: 4%;
+}
+
+.receipe_titre {
+  color: #cc3a3a;
+  margin-top: 0px;
+  font-family: "The Blacklist";
+}
+
+.receipe_item {
+  padding: 25px 40px 25px 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.receipe_first_img {
+   border: 1px solid #EEE;
+}
+
+.receipe_first_img:hover {
+   border: 1px solid #cc3a3a;
+   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.receipe_ingredients_img {
+  margin-right: 5px;
+  padding-right: 5px;
+  width: 60px;
+}
+
+.receipe_ingredients_list {
+  list-style-type: none;
+  color: #444;
+  font-size: 14px;
+  font-style: italic;
+  margin: 0;
+  padding: 0;
+}
+
+.receipe_ingredients_item {
+  border-radius: 2px;
+  margin: 0px 10px 5px 0px;
+}
+
+.receipe_prep {
+  margin: 15px 0px 15px 0px;
+  padding-left: 10px;
+  border-left: 5px solid #cc3a3a;
+}
+
+.receipe_more_title{
+  margin-top: 10px;
+  line-height: 2.5ex;
+  height: 7.5ex; /* 2.5ex par ligne donc 2.5x2 = 7.5 */
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .col-separator-right {
+    border-right: 5px solid #333;
+  }
+  .col-separator-left {
+    margin-left: -5px;
+    border-left: 5px solid #333;
+  }
+}
+
+/* ------ Old Boostrap Button ------ */
+.btn-default {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+.btn-default:focus,
+.btn-default.focus {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #8c8c8c;
+}
+.btn-default:hover {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+.btn-default:active:hover,
+.btn-default.active:hover,
+.open > .dropdown-toggle.btn-default:hover,
+.btn-default:active:focus,
+.btn-default.active:focus,
+.open > .dropdown-toggle.btn-default:focus,
+.btn-default:active.focus,
+.btn-default.active.focus,
+.open > .dropdown-toggle.btn-default.focus {
+  color: #333;
+  background-color: #d4d4d4;
+  border-color: #8c8c8c;
+}
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+  background-image: none;
+}
+.btn-default.disabled:hover,
+.btn-default[disabled]:hover,
+fieldset[disabled] .btn-default:hover,
+.btn-default.disabled:focus,
+.btn-default[disabled]:focus,
+fieldset[disabled] .btn-default:focus,
+.btn-default.disabled.focus,
+.btn-default[disabled].focus,
+fieldset[disabled] .btn-default.focus {
+  background-color: #fff;
+  border-color: #ccc;
+}
+.btn-default .badge {
+  color: #fff;
+  background-color: #333;
+}
+
+/* ------ Thumbs ------ */
+.thumbs-number {
+  font-size: 11px;
+}
+
+.thumbs-green {
+  color: rgb(43, 147, 43);
+}
+
+.thumbs-red {
+  color: rgb(255, 59, 59);
+}
