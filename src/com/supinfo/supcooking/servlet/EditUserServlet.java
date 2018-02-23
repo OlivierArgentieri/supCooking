@@ -20,13 +20,13 @@ import com.supinfo.supcooking.util.Hash256Service;
  * Servlet implementation class ProfileServlet
  */
 @WebServlet("/auth/profile")
-public class ProfileServlet extends HttpServlet {
+public class EditUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProfileServlet() {
+    public EditUserServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

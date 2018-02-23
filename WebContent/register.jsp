@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <html>
   <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -29,17 +29,16 @@
             	<p>
             		<span class="error">${messages["username"]}</span>
         		</p>
-                <input type="text" name="address" id="inputAddress" class="form-control" required autofocus>
-                <input type="text" name="description" id="inputDescription" class="form-control" required>
-                <input type="text" name="firstName" id="inputFirstName" class="form-control" required>
-                <input type="text" name="lastName" id="inputLastName" class="form-control"required>
-                <input type="text" name="username" id="inputUsername" class="form-control"required>
-                <input type="text" name="mail" id="inputMail" class="form-control" required>
-                
-                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de Passe" required>
-                <input type="text" name="postCode" id="inputPostCode" class="form-control" required>
-                <input type="text" name="phoneNumber" id="inputPhoneNumber" class="form-control" required>
-                
+        		<input type="text" name="username" id="inputUsername" class="form-control" placeholder="Pseudonyme" required autofocus>
+                <br><input type="text" name="mail" id="inputMail" class="form-control" placeholder="Adresse Email" required>
+                <br><input type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de Passe" required>
+                <br><input type="text" name="firstName" id="inputFirstName" class="form-control" placeholder="Prenom" required>
+                <br><input type="text" name="lastName" id="inputLastName" class="form-control" placeholder="Nom" required>
+                <br><input type="text" name="address" id="inputAddress" class="form-control" placeholder="Adresse" required>
+                <br><input type="text" name="postCode" id="inputPostCode" class="form-control" placeholder="Code Postal" required>
+                <br><input type="text" name="phoneNumber" id="inputPhoneNumber" class="form-control" placeholder="Telephone" required>
+                <br><textarea rows="4" type="text" name="description" id="inputDescription" class="form-control" placeholder="Description" required></textarea>
+                <br>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Valider</button>
             </form>
           </div>
