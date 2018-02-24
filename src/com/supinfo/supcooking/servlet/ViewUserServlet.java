@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.supinfo.supcooking.dao.jpa.JpaUserDao;
+import com.supinfo.supcooking.entity.Recipe;
 import com.supinfo.supcooking.entity.User;
 import com.supinfo.supcooking.util.Hash256Service;
 
@@ -66,6 +67,7 @@ public class ViewUserServlet extends HttpServlet {
 				request.setAttribute("user", u);
 
 				request.setAttribute("recipe", u.getRecipes());
+
 			}
 		}
 		
