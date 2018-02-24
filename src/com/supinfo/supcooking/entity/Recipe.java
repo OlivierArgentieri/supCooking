@@ -21,7 +21,8 @@ public class Recipe implements Serializable{
 	
 	private String name;
 	private String description;
-	private String icon;
+
+	private String image;
 	
 	private int difficulty;
 	private Time time;
@@ -64,11 +65,11 @@ public class Recipe implements Serializable{
 	}
 	
 	
-	public String getIcon() {
-		return this.icon;
+	public String getImage() {
+		return this.image;
 	}
-	public void setIcon(String icon) {
-		this.icon = icon;
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 	public int getDifficulty() {

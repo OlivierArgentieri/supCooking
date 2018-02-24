@@ -76,7 +76,7 @@ public class JpaRecipeDao implements RecipeDAO {
 			transaction.begin();
 			manager.createQuery("UPDATE Recipe AS recipe SET recipe.name = '"+aRecipe.getName()+"' WHERE recipe.id="+aRecipe.getId()).executeUpdate();
 			manager.createQuery("UPDATE Recipe AS recipe SET recipe.description = '"+aRecipe.getRecipeDescription()+"' WHERE recipe.id="+aRecipe.getId()).executeUpdate();
-			manager.createQuery("UPDATE Recipe AS recipe SET recipe.icon = "+aRecipe.getIcon()+" WHERE recipe.id="+aRecipe.getId()).executeUpdate();
+			manager.createQuery("UPDATE Recipe AS recipe SET recipe.image = "+aRecipe.getImage()+" WHERE recipe.id="+aRecipe.getId()).executeUpdate();
 			manager.createQuery("UPDATE Recipe AS recipe SET recipe.time = "+aRecipe.getTime()+" WHERE recipe.id="+aRecipe.getId()).executeUpdate();
 			manager.createQuery("UPDATE Recipe AS recipe SET recipe.difficulty = "+aRecipe.getDifficulty()+" WHERE recipe.id="+aRecipe.getId()).executeUpdate();
 			transaction.commit();

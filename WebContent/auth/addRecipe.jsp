@@ -25,12 +25,13 @@
             <br>
             <img class="img-responsive" src="assets/image/logo.png">
             <hr>
-            <form class="form-register" method="POST" action="newRecipe">
+            <form class="form-register" method="POST" action="newRecipe" enctype='multipart/form-data'>
             	<p>
             		<span class="error">${messages["username"]}</span>
         		</p>
         		
                 <input type="text" name="name" id="inputName" class="form-control"required>
+                <input type="file" name="file" id="inputImage" class="form-control"required>
                 <input type="text" name="description" id="inputDescription" class="form-control" required>
                 <input type="text" name="icon" id="inputIcon" class="form-control"required>
                 <input type="text" name="cookingTime" id="inputCookingTime" class="form-control" required autofocus>

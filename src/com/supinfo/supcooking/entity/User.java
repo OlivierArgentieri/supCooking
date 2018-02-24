@@ -24,7 +24,7 @@ public class User implements Serializable{
 	private String postCode;
 	private String description;
 	
-	@OneToMany(mappedBy="author",fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="author",  fetch=FetchType.EAGER)
 	private List<Recipe> recipes;
 	
 	

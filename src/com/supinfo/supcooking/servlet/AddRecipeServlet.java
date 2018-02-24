@@ -1,6 +1,8 @@
 package com.supinfo.supcooking.servlet;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.Formatter;
@@ -13,12 +15,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import com.supinfo.supcooking.dao.jpa.JpaRecipeDao;
 import com.supinfo.supcooking.dao.jpa.JpaUserDao;
@@ -26,6 +30,7 @@ import com.supinfo.supcooking.entity.Rate;
 import com.supinfo.supcooking.entity.Recipe;
 import com.supinfo.supcooking.entity.User;
 import com.supinfo.supcooking.util.Hash256Service;
+import com.supinfo.supcooking.util.extractFileName;
 
 import javafx.util.converter.LocalTimeStringConverter;
 import sun.util.locale.provider.DateFormatProviderImpl;
@@ -39,6 +44,7 @@ import java.time.LocalTime;
  * Servlet implementation class AddRecipeServlet
  */
 @WebServlet({"/auth/newRecipe" })
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, maxFileSize = 1024 * 1024 * 10, maxRequestSize = 1024 * 1024 * 50)
 public class AddRecipeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private EntityManagerFactory em;
@@ -90,6 +96,18 @@ public class AddRecipeServlet extends HttpServlet {
 			}
 		
 		recipe.setAuthor(u);
+		
+		// Upload Image
+		PrintWriter out = response.getWriter();
+		Part part = request.getPart("file");
+		String fileName = extractFileName.ExtractFileName(part);
+		String savePath = "C:\\Users\\User\\Desktop\\supCooking\\WebContent\\images" + File.separator + fileName;
+		File fileSaveDir = new File(savePath);
+		recipe.setImage(fileName);
+		part.write(savePath + File.separator);
+		
+		
+		
 		// String -> LocalTime -> Time (sql)
 		long hours = TimeUnit.MINUTES.toHours(Integer.parseInt(request.getParameter("cookingTime")));
 		long remainMinute =Integer.parseInt(request.getParameter("cookingTime")) - TimeUnit.HOURS.toMinutes(hours);
@@ -102,7 +120,7 @@ public class AddRecipeServlet extends HttpServlet {
 		recipe.setDate(Date.valueOf(localDate));
 		recipe.setDescription(request.getParameter("description"));
 		recipe.setDifficulty(Integer.parseInt(request.getParameter("difficulty")));
-		recipe.setIcon(request.getParameter("icon"));
+		//recipe.setIcon(request.getParameter("icon"));
 		// plus tard car besoin d'une list d'un form
 		//
 		//recipe.setIngredient(request.getParameter("difficulty"));

@@ -35,7 +35,7 @@ public class ListRecipe extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Map<String, String> messages = new HashMap<String, String>();
-		JpaRecipeDao jpa = new JpaRecipeDao();
+			JpaRecipeDao jpa = new JpaRecipeDao();
 		
 		// Recherche du cookie _AUTH
 		List<Recipe> r = jpa.getAllRecipes();
