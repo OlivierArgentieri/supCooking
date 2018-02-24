@@ -24,7 +24,7 @@ public class User implements Serializable{
 	private String postCode;
 	private String description;
 	
-	@OneToMany(mappedBy="author")
+	@OneToMany(mappedBy="author",fetch=FetchType.EAGER)
 	private List<Recipe> recipes;
 	
 	
@@ -82,6 +82,7 @@ public class User implements Serializable{
 		this.phoneNumber = phoneNumber;
 	}
 
+	
 	public List<Recipe> getRecipes() {
 		return this.recipes;
 	}

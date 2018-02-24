@@ -101,4 +101,20 @@ public class JpaRecipeDao implements RecipeDAO {
 		}
 		manager.close();
 	}
+	
+	
+	
+	
+	public List<Recipe> findRecipeByAuthor(Long id) {
+		List<Recipe> lesRecipes;
+		try { 
+			EntityManager manager = factory.createEntityManager();
+			lesRecipes = (List<Recipe>) manager.createQuery("SELECT recipe FROM Recipe AS recipe WHERE recipe.author_idUser = "+id).getResultList();
+			manager.close();
+		} catch (Exception e) {
+			throw e;
+		}
+		return lesRecipes;
+	}
+	
 }

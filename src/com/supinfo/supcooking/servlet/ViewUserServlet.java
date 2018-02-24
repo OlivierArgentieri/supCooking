@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.supinfo.supcooking.dao.jpa.JpaRecipeDao;
 import com.supinfo.supcooking.dao.jpa.JpaUserDao;
 import com.supinfo.supcooking.entity.Recipe;
 import com.supinfo.supcooking.entity.User;
@@ -38,15 +39,16 @@ public class ViewUserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Map<String, User> userAtt = new HashMap<String, User>();
-		JpaUserDao jpa = new JpaUserDao();
-		
+		JpaUserDao jpau = new JpaUserDao();
+		JpaRecipeDao jpar = new JpaRecipeDao();
+				
 		// Recherche du cookie _AUTH
 		User u = null;
 		
 		if(request.getParameter("id") != null)
 		{
 			try {
-				u = jpa.findUserById(Long.valueOf(request.getParameter("id")));
+				u = jpau.findUserById(Long.valueOf(request.getParameter("id")));
 			}
 			catch(Exception e)
 			{}

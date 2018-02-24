@@ -5,6 +5,8 @@
 <%@page import="java.util.List"%>
 <% User u = (User) request.getAttribute("user"); %>
 <% List<Recipe> mesRecettes = (List<Recipe>) request.getAttribute("recipe"); %>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html>
 	<head>
@@ -80,13 +82,9 @@
           <div class="col-sm-12 text-center">
             <hr>
             <h3 class="spacing_title">Profil de Jean  <p><%=u.getUsername() %></p></h3>
-            <%	if(mesRecettes != null){ 
-					for(Recipe r : mesRecettes) { %>
-				<span class="card-title"><%=r.getName() %></span>
-		        <p><%=r.getRecipeDescription() %></p>
 
-            <%}
-					} %>
+           
+				
             <hr>
           </div>
         </div>
@@ -123,13 +121,20 @@
               <hr>
             </div>
           </div>
-        <div class="row text-center">
+           <%	if(mesRecettes != null){ 
+				} %>
+				
+            
+					 <%  for(Recipe r : mesRecettes) { %>
+					   <div class="row text-center">
           <div class="col-md-3">
             <br><a href="#"><img class="img-fluid rounded receipe_first_img" src="assets/image/pizza1.jpg"></a>
-            <h5 class="receipe_more_title"><a href="#">Pizza Jambon Fromage</a></h5>
+            <h5 class="receipe_more_title"><a href="#"><%=r.getName() %></a></h5>
             <div class="form-control text-center">
                 <i class="far fa-thumbs-up fa-lg"></i> <span class="thumbs-number">[10]</span> &nbsp; &nbsp; <i class="far fa-thumbs-down fa-lg"></i> <span class="thumbs-number">[5]</span>
             </div>
+				<% } %>
+      
             <div class="btn-group" role="group" aria-label="cookingmore">
               <button type="button" class="btn btn-default"><i class="fas fa-clock"></i> 10 minutes</button>
               <button type="button" class="btn btn-default"><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></button>
