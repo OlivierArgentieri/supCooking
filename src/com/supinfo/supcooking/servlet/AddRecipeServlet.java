@@ -101,26 +101,37 @@ public class AddRecipeServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		Part part = request.getPart("file");
 		String fileName = extractFileName.ExtractFileName(part);
-		String savePath = "C:\\Users\\User\\Desktop\\supCooking\\WebContent\\images" + File.separator + fileName;
-		File fileSaveDir = new File(savePath);
-		recipe.setImage(fileName);
-		part.write(savePath + File.separator);
+		// test de l'extension pour la sécurité 
+		
+		if (fileName.toLowerCase().contains("jpg")  || fileName.toLowerCase().contains("png") || fileName.toLowerCase().contains("jpeg"))		{
+			String savePath = "C:\\Users\\User\\Desktop\\supCooking\\WebContent\\images" + File.separator + fileName;
+			File fileSaveDir = new File(savePath);
+			recipe.setImage(fileName);
+			part.write(savePath + File.separator);
+		}
+		else {
+			messages.put("error", "format de fichier incorrect, fichier accépté (jpeg, jpg, png)");
+			request.setAttribute("messages", messages);
+
+	        request.getRequestDispatcher("/auth/addRecipe.jsp").forward(request, response);
+		}
+		
 		
 		
 		
 		// String -> LocalTime -> Time (sql)
-		long hours = TimeUnit.MINUTES.toHours(Integer.parseInt(request.getParameter("cookingTime")));
-		long remainMinute =Integer.parseInt(request.getParameter("cookingTime")) - TimeUnit.HOURS.toMinutes(hours);
-		
-		recipe.setCookingTime(Time.valueOf(LocalTime.of(10, 02)));
-		System.out.println(request.getParameter("cookingTime"));
+		int hours = Integer.parseInt(request.getParameter("cookingTime")) / 60;
+		int minute =Integer.parseInt(request.getParameter("cookingTime")) % 60;
+		System.out.println(hours);
+		System.out.println(minute);
+
+		recipe.setCookingTime(Time.valueOf(LocalTime.of(hours, minute)));
 		// plus tard car besoin de récupérer d'une list d'un form
 		//recipe.
 		LocalDate localDate = LocalDate.now();
 		recipe.setDate(Date.valueOf(localDate));
 		recipe.setDescription(request.getParameter("description"));
 		recipe.setDifficulty(Integer.parseInt(request.getParameter("difficulty")));
-		//recipe.setIcon(request.getParameter("icon"));
 		// plus tard car besoin d'une list d'un form
 		//
 		//recipe.setIngredient(request.getParameter("difficulty"));

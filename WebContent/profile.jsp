@@ -126,9 +126,9 @@
 				
             
 					 <%  for(Recipe r : mesRecettes) { %>
-					   <div class="row text-center">
+					   
           <div class="col-md-3">
-            <br><a href="#"><img class="img-fluid rounded receipe_first_img" src="assets/image/pizza1.jpg"></a>
+            <br><a href="#"><img class="img-fluid rounded receipe_first_img" src="images/<%=r.getImage() %>"></a>
             <h5 class="receipe_more_title"><a href="#"><%=r.getName() %></a></h5>
             <div class="form-control text-center">
                 <i class="far fa-thumbs-up fa-lg"></i> <span class="thumbs-number">[10]</span> &nbsp; &nbsp; <i class="far fa-thumbs-down fa-lg"></i> <span class="thumbs-number">[5]</span>
@@ -151,32 +151,9 @@
               <button type="button" class="btn btn-default"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></button>
             </div>
           </div>
-          <div class="col-md-3">
-            <br><a href="#"><img class="img-fluid rounded receipe_first_img" src="assets/image/salade2.jpg"></a>
-            <h5 class="receipe_more_title"><a href="#">Salade de concombre au chèvre et olives</a></h5>
-            <div class="form-control text-center">
-                <i class="far fa-thumbs-up fa-lg"></i> <span class="thumbs-number">[14]</span> &nbsp; &nbsp; <i class="far fa-thumbs-down fa-lg"></i> <span class="thumbs-number">[8]</span>
-            </div>
-            <div class="btn-group" role="group" aria-label="cookingmore">
-              <button type="button" class="btn btn-default"><i class="fas fa-clock"></i> 5 minutes</button>
-              <button type="button" class="btn btn-default"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></button>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <br><a href="#"><img class="img-fluid rounded receipe_first_img" src="assets/image/pates1.jpg"></a>
-            <h5 class="receipe_more_title"><a href="#">Pâtes sauce Madère</a></h5>
-            <div class="form-control text-center">
-                <i class="far fa-thumbs-up fa-lg"></i> <span class="thumbs-number">[54]</span> &nbsp; &nbsp; <i class="far fa-thumbs-down fa-lg"></i> <span class="thumbs-number">[15]</span>
-            </div>
-            <div class="btn-group" role="group" aria-label="cookingmore">
-              <button type="button" class="btn btn-default"><i class="fas fa-clock"></i> 20 minutes</button>
-              <button type="button" class="btn btn-default"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></button>
-            </div>
-          </div>
 
         </div>
       </div>
-    </div>
 
     <!-- Footer -->
     <footer class="footer ">

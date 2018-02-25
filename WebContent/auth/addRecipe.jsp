@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@page import="java.util.HashMap"%>
+    
+<% HashMap<String, String> messages = (HashMap<String, String>) request.getAttribute("messages"); %>
 <html>
   <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -27,16 +31,19 @@
             <hr>
             <form class="form-register" method="POST" action="newRecipe" enctype='multipart/form-data'>
             	<p>
-            		<span class="error">${messages["username"]}</span>
+            	<% if (messages != null) { %>
+            		 <%  for(String s : messages.values()){ %>
+            		 <span class="error"><%=s %></span>
+            		 <% }
+            		 }%>
         		</p>
         		
-                <input type="text" name="name" id="inputName" class="form-control"required>
-                <input type="file" name="file" id="inputImage" class="form-control"required>
-                <input type="text" name="description" id="inputDescription" class="form-control" required>
-                <input type="text" name="icon" id="inputIcon" class="form-control"required>
-                <input type="text" name="cookingTime" id="inputCookingTime" class="form-control" required autofocus>
-                <input type="text" name="difficulty" id="inputDifficulty" class="form-control" required>
-                <input type="number" name="time" id="inputTime" class="form-control" required>
+                <input type="text" name="name" id="inputName" class="form-control" placeholder="inputName" required>
+                <input type="file" name="file" id="inputImage" class="form-control"  required>
+                <input type="text" name="description" id="inputDescription" class="form-control" placeholder="inputDescription" required>
+                <input type="number" name="cookingTime" id="inputCookingTime" class="form-control" placeholder="inputCookingTime"  min="0"required autofocus>
+                <input type="text" name="difficulty" id="inputDifficulty" class="form-control" placeholder="inputDifficulty" required>
+                <input type="number" name="time" id="inputTime" class="form-control" placeholder="inputTime"  min="0"required>
                 
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Valider</button>
             </form>
