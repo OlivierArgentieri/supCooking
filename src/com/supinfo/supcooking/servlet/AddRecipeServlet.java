@@ -119,15 +119,15 @@ public class AddRecipeServlet extends HttpServlet {
 		
 		
 		
-		// String -> LocalTime -> Time (sql)
+		// String -> Int / 60 -> Time
 		int hours = Integer.parseInt(request.getParameter("cookingTime")) / 60;
 		int minute =Integer.parseInt(request.getParameter("cookingTime")) % 60;
-		System.out.println(hours);
-		System.out.println(minute);
+
 
 		recipe.setCookingTime(Time.valueOf(LocalTime.of(hours, minute)));
 		// plus tard car besoin de récupérer d'une list d'un form
 		//recipe.
+		
 		LocalDate localDate = LocalDate.now();
 		recipe.setDate(Date.valueOf(localDate));
 		recipe.setDescription(request.getParameter("description"));
@@ -136,7 +136,10 @@ public class AddRecipeServlet extends HttpServlet {
 		//
 		//recipe.setIngredient(request.getParameter("difficulty"));
 		recipe.setName(request.getParameter("name"));
-		recipe.setTime(Time.valueOf(LocalTime.of(1, 02)));
+
+		hours = Integer.parseInt(request.getParameter("time")) / 60;
+		minute =Integer.parseInt(request.getParameter("time")) % 60;
+		recipe.setTime(Time.valueOf(LocalTime.of(hours, minute)));
 		recipe.setRate(new Rate());
 		
 		
@@ -159,8 +162,7 @@ public class AddRecipeServlet extends HttpServlet {
 			}
 	    
        
-
-		doGet(request, response);
+	    request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 
 }

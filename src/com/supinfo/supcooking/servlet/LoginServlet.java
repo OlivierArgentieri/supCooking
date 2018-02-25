@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.sendRedirect("/supCooking/login.jsp");
 	}
-
+   
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

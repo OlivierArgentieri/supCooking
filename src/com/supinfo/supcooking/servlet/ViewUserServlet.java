@@ -40,10 +40,29 @@ public class ViewUserServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		Map<String, User> userAtt = new HashMap<String, User>();
 		JpaUserDao jpau = new JpaUserDao();
-		JpaRecipeDao jpar = new JpaRecipeDao();
 				
 		// Recherche du cookie _AUTH
 		User u = null;
+		HttpSession s  = request.getSession();
+		
+		if(s.getAttribute("user") != null)
+		{
+			u = (User) s.getAttribute("user");
+			request.setAttribute("user", u);
+		}
+		else if (request.getCookies() != null) {
+			 for (Cookie cookie : request.getCookies()) {
+			   if (cookie.getName().equals("_AUTH")) {
+			    u= jpau.getUserByToken(Hash256Service.hash256(cookie.getValue()));
+			    }
+			  }
+			}
+		
+		 if (u != null) {
+			
+			 request.setAttribute("user", u);
+			 request.getRequestDispatcher("auth/profile.jsp?id="+ u.getId()).forward(request, response);
+		 }
 		
 		if(request.getParameter("id") != null)
 		{
@@ -55,21 +74,8 @@ public class ViewUserServlet extends HttpServlet {
 			
 			if(u != null)
 			{
-				/*
-				userAtt.put("username", u.getUsername());
-				userAtt.put("address", u.getAddress());
-				userAtt.put("description", u.getDescription());
-				userAtt.put("firstName", u.getFirstName());
-				userAtt.put("lastNAme", u.getLastName());
-				userAtt.put("mail", u.getMail());
-				userAtt.put("phoneNumer", u.getPhoneNumber());
-				
-				userAtt.put("recipe", u.getRecipes());*/
-				//userAtt.put("user", u);
 				request.setAttribute("user", u);
-
 				request.setAttribute("recipe", u.getRecipes());
-
 			}
 		}
 		
