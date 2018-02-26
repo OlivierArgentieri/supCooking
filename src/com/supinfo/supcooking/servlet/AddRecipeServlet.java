@@ -116,9 +116,6 @@ public class AddRecipeServlet extends HttpServlet {
 	        request.getRequestDispatcher("/auth/addRecipe.jsp").forward(request, response);
 		}
 		
-		
-		
-		
 		// String -> Int / 60 -> Time
 		int hours = Integer.parseInt(request.getParameter("cookingTime")) / 60;
 		int minute =Integer.parseInt(request.getParameter("cookingTime")) % 60;
@@ -141,8 +138,6 @@ public class AddRecipeServlet extends HttpServlet {
 		minute =Integer.parseInt(request.getParameter("time")) % 60;
 		recipe.setTime(Time.valueOf(LocalTime.of(hours, minute)));
 		recipe.setRate(new Rate());
-		
-		
 	
 		EntityManager em = this.em.createEntityManager();
         EntityTransaction et = em.getTransaction();
