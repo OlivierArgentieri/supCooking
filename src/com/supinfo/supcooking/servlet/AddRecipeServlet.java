@@ -104,7 +104,7 @@ public class AddRecipeServlet extends HttpServlet {
 		// test de l'extension pour la sécurité 
 		
 		if (fileName.toLowerCase().contains("jpg")  || fileName.toLowerCase().contains("png") || fileName.toLowerCase().contains("jpeg"))		{
-			String savePath = "C:\\Users\\User\\Desktop\\supCooking\\WebContent\\images" + File.separator + fileName;
+			String savePath = "C:\\Users\\User\\Desktop\\supCooking\\WebContent\\assets\\images" + File.separator + fileName;
 			File fileSaveDir = new File(savePath);
 			recipe.setImage(fileName);
 			part.write(savePath + File.separator);

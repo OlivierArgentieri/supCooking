@@ -63,7 +63,7 @@ public class LoginServlet extends HttpServlet {
 			messages.put("username", connectedUser.getUsername());
 			request.setAttribute("messages", messages);
 
-			response.sendRedirect("/supCooking/index");
+			response.sendRedirect("/supCooking/accueil");
 		}
 		
 		else if(connectedUser != null)

@@ -1,5 +1,8 @@
+<%@page import="com.supinfo.supcooking.entity.User"%>
+<%@page import="com.supinfo.supcooking.entity.Recipe"%>
+<%@page import="java.util.List"%>
+<% User u = (User) request.getAttribute("user"); %>
 <!-- Start Body -->
-
 <body id="page-top">
 	<!-- Navigation -->
 	<div id="flipkart-navbar">
@@ -7,22 +10,19 @@
 					<div class="row row1">
 						<div class="col-sm-12">
 							<ul class="largenav flipkart-menu-ul">
-									<li class="upper-links"><a class="links" href="index.html"> <i class="fas fa-home"></i> Accueil</a></li>
-									<li class="upper-links"><a class="links" href="listeRecettes.html"> <i class="fas fa-tasks"></i> Toutes les recettes</a></li>
-									<li class="upper-links"><a class="links" href="#"> <i class="fas fa-random"></i> Recette aleatoire</a></li>
-									<li class="upper-links"><a class="links" href="/supCooking/auth/newRecipe"><i class="fas fa-pencil-alt"></i> Ecrire ma recette</a></li>
-									<!-- Moovers --><li class="up"></li>
-									<c:choose>
-									<c:when test="${messages['username']  != null }">
-											<li class="upper-links"><a class="links" href="/supCooking/profile?id=${messages['id']}"><i class="fas fa-user"></i> ${messages['username']}</a></li>
-											<li class="upper-links"><a class="links" href="logout"><i class="fas fa-logout"></i> Deconnexion</a></li>
-									</c:when>    
-									<c:otherwise>
-											<li class="upper-links"><a class="links" href="login"><i class="fas fa-users"></i> Connexion</a></li>
-											<br />
-									</c:otherwise>
-								</c:choose>
-							</ul>
+		                      <li class="upper-links"><a class="links" href="index.html"> <i class="fas fa-home"></i> Accueil</a></li>
+		                      <li class="upper-links"><a class="links" href="listeRecettes.html"> <i class="fas fa-tasks"></i> Toutes les recettes</a></li>
+		                      <li class="upper-links"><a class="links" href="#"> <i class="fas fa-random"></i> Recette aleatoire</a></li>
+		                      <li class="upper-links"><a class="links" href="/supCooking/auth/newRecipe"><i class="fas fa-pencil-alt"></i> Ecrire ma recette</a></li>
+		                      <!-- Moovers --><li class="up"></li>
+		                      	<%	if(u != null){ %>
+									<li class="upper-links"><a class="links" href="/supCooking/profile?id=<%=u.getId() %>"> <%=u.getUsername()%></a></li>
+						        	<li class="upper-links"><a class="links" href="/supCooking/logout"><i class="fas fa-users"></i> Deconnexion</a></li>
+						        <%} else {  %>
+						        	<li class="upper-links"><a class="links" href="/supCooking/login.jsp"><i class="fas fa-users"></i> Connexion</a></li>
+						        	<br />
+						        <%} %>
+			                </ul>
 						</div>
 					</div>
 					<div class="row row2 d-flex align-items-center">

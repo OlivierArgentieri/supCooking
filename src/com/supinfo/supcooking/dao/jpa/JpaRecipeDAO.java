@@ -116,5 +116,15 @@ public class JpaRecipeDao implements RecipeDAO {
 		}
 		return lesRecipes;
 	}
-	
+	public List<Recipe> getLastFourRecipes() {
+		List<Recipe> lesRecipes;
+		try { 
+			EntityManager manager = factory.createEntityManager();
+			lesRecipes = (List<Recipe>) manager.createQuery("SELECT recipe FROM Recipe AS recipe ORDER BY id DESC").setMaxResults(4).getResultList();
+			manager.close();
+		} catch (Exception e) {
+			throw e;
+		}
+		return lesRecipes;
+	}
 }

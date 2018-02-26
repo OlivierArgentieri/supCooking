@@ -1,9 +1,13 @@
 package com.supinfo.supcooking.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -13,16 +17,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.supinfo.supcooking.dao.jpa.JpaUserDao;
+import com.supinfo.supcooking.entity.Recipe;
 import com.supinfo.supcooking.entity.User;
 import com.supinfo.supcooking.util.Hash256Service;
 
 /**
  * Servlet implementation class ProfileServlet
  */
-@WebServlet("/auth/profile")
+@WebServlet("/auth/editProfile")
 public class EditUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private EntityManagerFactory em;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -36,48 +42,32 @@ public class EditUserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Map<String, String> userAtt = new HashMap<String, String>();
+		// Recherche du cookie _AUTH
 		JpaUserDao jpa = new JpaUserDao();
 		
-		// Recherche du cookie _AUTH
 		User u = null;
 		HttpSession s  = request.getSession();
 		
 		if(s.getAttribute("user") != null)
 		{
 			u = (User) s.getAttribute("user");
-			userAtt.put("username", u.getUsername());
-			userAtt.put("address", u.getAddress());
-			userAtt.put("description", u.getDescription());
-			userAtt.put("firstName", u.getFirstName());
-			userAtt.put("lastNAme", u.getLastName());
-			userAtt.put("mail", u.getMail());
-			userAtt.put("phoneNumer", u.getPhoneNumber());
-			userAtt.put("postCode", u.getPostCode());
-			
-			request.setAttribute("user", userAtt);
 		}
-		
 		else if (request.getCookies() != null) {
-			for (Cookie cookie : request.getCookies()) {
-				if (cookie.getName().equals("_AUTH")) {
-					u= jpa.getUserByToken(Hash256Service.hash256(cookie.getValue()));
-					}
+			 for (Cookie cookie : request.getCookies()) {
+			   if (cookie.getName().equals("_AUTH")) {
+			    u= jpa.getUserByToken(Hash256Service.hash256(cookie.getValue()));
+			    }
+			  }
 			}
-			if (u != null) {
-				userAtt.put("username", u.getUsername());
-				userAtt.put("address", u.getAddress());
-				userAtt.put("description", u.getDescription());
-				userAtt.put("firstName", u.getFirstName());
-				userAtt.put("lastNAme", u.getLastName());
-				userAtt.put("mail", u.getMail());
-				userAtt.put("phoneNumer", u.getPhoneNumber());
-				userAtt.put("postCode", u.getPostCode());
-				
-				request.setAttribute("user", userAtt);
-				}
-			}
-		request.getRequestDispatcher("/auth/profile.jsp").forward(request, response);
+		
+		 if (u != null) {
+			 request.setAttribute("user", u);
+			 request.getRequestDispatcher("/auth/editProfile.jsp").forward(request, response);
+		 }
+		 
+		 
+		 request.getRequestDispatcher("index.jsp").forward(request, response);
+
 	}
 
 	/**
@@ -85,6 +75,36 @@ public class EditUserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		JpaUserDao jpa = new JpaUserDao();
+				
+		User u = null;
+		HttpSession s  = request.getSession();
+		
+		if(s.getAttribute("user") != null)
+		{
+			u = (User) s.getAttribute("user");
+		}
+		else if (request.getCookies() != null) {
+			 for (Cookie cookie : request.getCookies()) {
+			   if (cookie.getName().equals("_AUTH")) {
+			    u= jpa.getUserByToken(Hash256Service.hash256(cookie.getValue()));
+			    }
+			  }
+			}
+		
+		 if (u != null) {
+			u.setAddress(request.getParameter("address"));
+			u.setDescription(request.getParameter("description"));
+			u.setFirstName(request.getParameter("firstName"));
+			u.setLastName(request.getParameter("lastName"));
+			u.setUsername(request.getParameter("username"));
+			u.setMail(request.getParameter("mail"));
+			
+			jpa.updateUser(u);
+			
+			request.setAttribute("user", u);
+			request.getRequestDispatcher("/auth/editProfile.jsp").forward(request, response);
+		 }
+		
 	}
 }

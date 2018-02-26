@@ -118,10 +118,7 @@
             </div>
           
            <%	if(mesRecettes != null){ 
-				} %>
-				
-            
-					 <%  for(Recipe r : mesRecettes) { %>
+        	    for(Recipe r : mesRecettes) { %>
 					   
           <div class="col-md-3">
             <br><a href="#"><img class="img-fluid rounded receipe_first_img" src="images/<%=r.getImage() %>"></a>
@@ -135,7 +132,9 @@
             </div>
           
           </div>
-          <% } %>
+          <% }} else {%>
+     	 <%=u.getUsername() %> n'a pas encore écris de recettes
+     	<%}%>
           <div class="col-md-3">
             <br><a href="#"><img class="img-fluid rounded receipe_first_img" src="assets/image/gratin2.jpg"></a>
             <h5 class="receipe_more_title"><a href="#">Gratin de courgette</a></h5>

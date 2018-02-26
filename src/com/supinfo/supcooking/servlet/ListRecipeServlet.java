@@ -17,14 +17,14 @@ import com.supinfo.supcooking.entity.Recipe;
 /**
  * Servlet implementation class ListRecipe
  */
-@WebServlet("/list_recipe")
-public class ListRecipe extends HttpServlet {
+@WebServlet("/recettes")
+public class ListRecipeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListRecipe() {
+    public ListRecipeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

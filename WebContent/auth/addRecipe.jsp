@@ -43,7 +43,7 @@
                 <input type="text" name="description" id="inputDescription" class="form-control" placeholder="inputDescription" required>
                 <input type="number" name="cookingTime" id="inputCookingTime" class="form-control" placeholder="inputCookingTime"  min="0"required autofocus>
                 <input type="text" name="difficulty" id="inputDifficulty" class="form-control" placeholder="inputDifficulty" required>
-                <input type="number" name="time" id="inputTime" class="form-control" placeholder="inputTime"  min="0"required>
+                <input type="number" name="time" id="inputTime" class="form-control" placeholder="inputTime" required>
                 
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Valider</button>
             </form>
