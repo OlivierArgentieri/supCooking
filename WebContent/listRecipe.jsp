@@ -27,11 +27,11 @@
             <div class="receipe_item">
                 <div class="row">
                     <div class="col-lg-5 col-md-5 col-sm-5 hidden-xs">
-                        <a href="story-13"><img class="img-fluid rounded receipe_first_img" src="assets/images/<%=r.getImage()%>"></a>
+                        <a href="recette?id=<%=r.getId()%>"><img class="img-fluid rounded receipe_first_img" src="assets/images/<%=r.getImage()%>"></a>
                     </div>
                     <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
                         <h2 class="receipe_titre">
-                            <a href="detailRecette.html" class="news_lien"><%=r.getName() %></a>
+                            <a href="recette?id=<%=r.getId()%>" class="news_lien"><%=r.getName() %></a>
                         </h2>
                         <span class="text-muted"><b>Posté le <%=r.getDate() %></b></span>
                         <p class="text-justify">

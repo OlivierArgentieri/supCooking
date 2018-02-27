@@ -5,146 +5,97 @@
 <% Recipe r = (Recipe) request.getAttribute("recipe"); %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
-	<%@ include file="header.jsp" %>
+<%@ include file="header.jsp" %>
 	<%@ include file="navBar.jsp" %>
-
-    <!-- recette -->
+    <!-- detailReceipe -->
     <div class="container">
       <div class="receipe_detail">
-        <div class="row">
-          <div class="col-sm-12 text-center">
-            <hr>
-            <h3 class="spacing_title">Recette :  <p><%=r.getName() %></p></h3>
+        <div class="row d-flex align-items-center">
+          <div class="col-lg-6">
+            <h1 class="receipe_titre"><%=r.getName() %></h1>
+          </div>
 
-           
-				
-            <hr>
+          <div class="col-lg-6 text-right">
+            Recette proposé par :<br> <i class="far fa-user"></i> <a href="profile?id=<%=r.getAuthor().getId()%>"><i><%=r.getAuthor().getUsername()%></i></a>
+
           </div>
         </div>
-        <!-- Statistics -->
+
         <div class="row">
-            <div class="col-lg-4 col-md-6 text-center">
-              <div class="mt-5 mx-auto">
-                <i class="fas fa-4x fa-tasks text-primary mb-3 sr-icons"></i>
-                <h3 class="mb-3">1575 Recettes</h3>
-                <p class="text-muted mb-0">Mais que vois-je un vrai cuistot est présent ici, que dit-je un chef !</p>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center">
-              <div class="mt-5 mx-auto">
-                <i class="fas fa-4x fa-thumbs-up text-primary mb-3 sr-icons"></i>
-                <h3 class="mb-3">54 Retours positifs</h3>
-                <p class="text-muted mb-0">Un certain nombre de personnes ont l'air d'apprécier ses recettes.</p>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-12 text-center">
-              <div class="mt-5 mx-auto">
-                <i class="fas fa-4x fa-thumbs-down text-primary mb-3 sr-icons"></i>
-                <h3 class="mb-3">23 Retours négatifs</h3>
-                <p class="text-muted mb-0">On ne le répétera pas mais les goûts et les couleurs ne se discutent pas..</p>
-              </div>
-            </div>
+          <div class="col-lg-6">
+            <img class="img-fluid rounded" src="assets/images/<%=r.getImage()%>">
           </div>
-
-        <!-- Recipes -->
-        <div class="row">
-            <div class="col-sm-12 text-center">
-              <br><hr>
-              <h3 class="spacing_title"> Recette écrites par <%=r.getAuthor().getUsername()%></h3>
-              <hr>
-            </div>
-   
-   
-   
-   
-   
-          <div class="col-md-3">
-            <br><a href="#"><img class="img-fluid rounded receipe_first_img" src="images/<%=r.getImage() %>"></a>
-            <h5 class="receipe_more_title"><a href="#"><%=r.getName() %></a></h5>
-            <div class="form-control text-center">
-                <i class="far fa-thumbs-up fa-lg"></i> <span class="thumbs-number">[10]</span> &nbsp; &nbsp; <i class="far fa-thumbs-down fa-lg"></i> <span class="thumbs-number">[5]</span>
-            </div>
-            <div class="btn-group" role="group" aria-label="cookingmore">
-              <button type="button" class="btn btn-default"><i class="fas fa-clock"></i><%=r.getTime().getMinutes() + r.getCookingTime().getMinutes() %> minutes</button>
-              <button type="button" class="btn btn-default"><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></button>
-            </div>
-          
-          </div>
-
-          <div class="col-md-3">
-            <br><a href="#"><img class="img-fluid rounded receipe_first_img" src="assets/image/gratin2.jpg"></a>
-            <h5 class="receipe_more_title"><a href="#">Gratin de courgette</a></h5>
-            <div class="form-control text-center">
-                <i class="far fa-thumbs-up fa-lg"></i> <span class="thumbs-number">[6]</span> &nbsp; &nbsp; <i class="far fa-thumbs-down fa-lg"></i> <span class="thumbs-number">[2]</span>
-            </div>
-            <div class="btn-group" role="group" aria-label="cookingmore">
-              <button type="button" class="btn btn-default"><i class="fas fa-clock"></i> 45 minutes</button>
-              <button type="button" class="btn btn-default"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    <!-- Footer -->
-    <footer class="footer ">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
-              <ul class="list-inline mb-2">
-                <li class="list-inline-item">
-                  <a href="#">About</a>
-                </li>
-                <li class="list-inline-item">&sdot;</li>
-                <li class="list-inline-item">
-                  <a href="#">Contact</a>
-                </li>
-                <li class="list-inline-item">&sdot;</li>
-                <li class="list-inline-item">
-                  <a href="#">Terms of Use</a>
-                </li>
-                <li class="list-inline-item">&sdot;</li>
-                <li class="list-inline-item">
-                  <a href="#">Privacy Policy</a>
-                </li>
-              </ul>
-              <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2018. All Rights Reserved.</p>
-            </div>
-            <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+          <div class="col-lg-6">
+            <p>
+              <b><u>Description de la recette :</u></b> <br>
+              Le gratin dauphinois, ou pommes de terre à la dauphinoise, est un mets français d'origine dauphinoise, à base de pommes de terre et de lait. Ce plat est connu en Amérique du Nord, comme « au gratin style potatoes » ou « pommes de terre au gratin ».
+            </p>
+            <p>
+              <b><u>Temps de préparation :</u></b> <br>
+              <i class="fas fa-clock"></i> <%=r.getTime().getMinutes() + r.getCookingTime().getMinutes() %> minutes
+            </p>
+            <p>
+              <b><u>Difficulté :</u></b> <br>
+              <% for(int i = 1; i <= r.getDifficulty() ; i++) {%>	
+                <i class="fas fa-star"></i>
+              <% } if (r.getDifficulty() < 5) {%>
+              
+                    <%for (int i =r.getDifficulty(); i < 5; i++) {%>
+                    <i class="far fa-star"></i>
+                <%}} %>
+            </p>
+            <hr>
+            <p>
+              <b><u>Partager cette recette </b></u>
               <ul class="list-inline mb-0">
-                <li class="list-inline-item mr-3">
-                  <a href="#">
-                    <i class="fab fa-facebook fa-2x fa-fw"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item mr-3">
-                  <a href="#">
-                    <i class="fab fa-twitter fa-2x fa-fw"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="#">
-                    <i class="fab fa-instagram fa-2x fa-fw"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
+                  <li class="list-inline-item mr-3">
+                    <a href="#">
+                      <i style="color: #333;" class="fab fa-facebook fa-2x fa-fw"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item mr-3">
+                    <a href="#">
+                      <i style="color: #333;" class="fab fa-twitter fa-2x fa-fw"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#">
+                      <i style="color: #333;" class="fab fa-instagram fa-2x fa-fw"></i>
+                    </a>
+                  </li>
+                </ul>
+            </p>
           </div>
         </div>
-      </footer>
-  
-      <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
-      <div class="scroll-to-top d-lg-none position-fixed ">
-        <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
-          <i class="fa fa-chevron-up"></i>
-        </a>
+        <div class="row recipe_head_section">
+          <div class="col-lg-12 text-center">
+            <hr>
+            <h3 class="spacing_title">Préparation et Ingrédients</h3>
+            <hr>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Left -->
+          <div class="col-lg-9 col-separator-right">
+            <h3 class="receipe_titre">Etapes de préparation :</h3>
+            <div class="btn-group" role="group" aria-label="cookingtime">
+              <button type="button" class="btn btn-default">Temps Total: <%=r.getTime().getMinutes() + r.getCookingTime().getMinutes() %> minutes</button>
+              <button type="button" class="btn btn-default"><i class="fas fa-utensils"></i> Préparation: <%=r.getTime().getMinutes() %> minutes</button>
+              <button type="button" class="btn btn-default"><i class="fas fa-fire"></i> Cuisson: <%=r.getCookingTime().getMinutes() %> minutes</button>
+            </div>
+            <br><br>
+            <p class="receipe_prep">
+              <%=r.getText() %>
+            </p> 
+          </div>
+
+          <!-- Right -->
+          <div class="col-lg-3 col-separator-left">
+            <h3 class="receipe_titre">Liste des ingrédients :</h3>
+              <ul class="receipe_ingredients_list">
+              </ul>
+          </div>
+        </div>
       </div>
-
-      <!-- Scripting -->
-      <script src="assets/vendor/jquery/jquery.min.js"></script>
-      <script src="assets/vendor/bootstrap/js/bootstrap.js"></script>
-      <script src="assets/js/plugins.js"></script>
-
-	<!-- End Body -->
-	</body>
-</html>
+    </div>
+<%@ include file="footer.jsp" %>

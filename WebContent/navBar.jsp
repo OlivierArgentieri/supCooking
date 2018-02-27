@@ -10,7 +10,7 @@
 					<div class="row row1">
 						<div class="col-sm-12">
 							<ul class="largenav flipkart-menu-ul">
-		                      <li class="upper-links"><a class="links" href="index.html"> <i class="fas fa-home"></i> Accueil</a></li>
+		                      <li class="upper-links"><a class="links" href="/supCooking/accueil"> <i class="fas fa-home"></i> Accueil</a></li>
 		                      <li class="upper-links"><a class="links" href="/supCooking/recettes"> <i class="fas fa-tasks"></i> Toutes les recettes</a></li>
 		                      <li class="upper-links"><a class="links" href="#"> <i class="fas fa-random"></i> Recette aleatoire</a></li>
 		                      <li class="upper-links"><a class="links" href="/supCooking/auth/newRecipe"><i class="fas fa-pencil-alt"></i> Ecrire ma recette</a></li>

@@ -128,6 +128,8 @@ public class AddRecipeServlet extends HttpServlet {
 		LocalDate localDate = LocalDate.now();
 		recipe.setDate(Date.valueOf(localDate));
 		recipe.setDescription(request.getParameter("description"));
+
+		recipe.setText(request.getParameter("text"));
 		recipe.setDifficulty(Integer.parseInt(request.getParameter("difficulty")));
 		// plus tard car besoin d'une list d'un form
 		//

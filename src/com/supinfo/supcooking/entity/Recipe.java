@@ -21,7 +21,7 @@ public class Recipe implements Serializable{
 	
 	private String name;
 	private String description;
-
+	private String text;
 	private String image;
 	
 	private int difficulty;
@@ -64,6 +64,12 @@ public class Recipe implements Serializable{
 		this.description = description;
 	}
 	
+	public String getText() {
+		return this.text;
+	}
+	public void setText(String text) {
+		this.text = text;
+	}
 	
 	public String getImage() {
 		return this.image;
