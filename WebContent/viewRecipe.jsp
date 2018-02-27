@@ -28,8 +28,8 @@
           <div class="col-lg-6">
             <p>
               <b><u>Description de la recette :</u></b> <br>
-              Le gratin dauphinois, ou pommes de terre à la dauphinoise, est un mets français d'origine dauphinoise, à base de pommes de terre et de lait. Ce plat est connu en Amérique du Nord, comme « au gratin style potatoes » ou « pommes de terre au gratin ».
-            </p>
+             <%=r.getRecipeDescription()%>
+              </p>
             <p>
               <b><u>Temps de préparation :</u></b> <br>
               <i class="fas fa-clock"></i> <%=r.getTime().getMinutes() + r.getCookingTime().getMinutes() %> minutes

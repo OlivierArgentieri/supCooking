@@ -2,28 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@page import="com.supinfo.supcooking.entity.User"%>
 <% User u = (User) request.getAttribute("user"); %>
-    
-    
-<html>
-  <head>
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta name="description" content="Website for manage recipe">
-      <meta name="author" content="">
-  
-      <title>SupCooking Register</title>
-  
-      <!-- GoogleFonts -->
-      <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-      <!-- Bootstrap Core CSS -->
-      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-      <!-- FontAwesome Core -->
-      <link href="assets/vendor/fontawesome506/css/fontawesome-all.css" rel="stylesheet">
-      <!-- Custom style theme -->
-      <link href="assets/css/login.css" rel="stylesheet">
-  </head>
-  <body>
+
+
+<%@ include file="../navBar.jsp" %>
+<%@ include file="header.jsp" %>
       <div class="container">
           <div class="card card-container">
             <br>
@@ -47,7 +29,5 @@
             </form>
           </div>
       </div>      
-  </body>
-</html>
-
+<%@ include file="../footer.jsp" %>
 		

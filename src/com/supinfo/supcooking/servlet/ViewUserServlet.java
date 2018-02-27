@@ -61,27 +61,28 @@ public class ViewUserServlet extends HttpServlet {
 		 if (u != null && Long.valueOf(request.getParameter("id"))== u.getId()) {
 			
 			 request.setAttribute("user", u);
-			 request.getRequestDispatcher("auth/profile.jsp?id="+ u.getId()).forward(request, response);
+			// request.getRequestDispatcher("auth/profile.jsp?id="+ u.getId()).forward(request, response);
 		 }
-		 
-		if(request.getParameter("id") != null)
-		{
-			try {
-				u = jpau.findUserById(Long.valueOf(request.getParameter("id")));
-			}
-			catch(Exception e)
-			{}
-			
-			if(u != null)
+		 else {
+			if(request.getParameter("id") != null)
 			{
-				request.setAttribute("user", u);
-				request.setAttribute("recipe", u.getRecipes());
+				try {
+					u = jpau.findUserById(Long.valueOf(request.getParameter("id")));
+				}
+				catch(Exception e)
+				{}
+				
+				if(u != null)
+				{
+					request.setAttribute("user", u);
+					request.setAttribute("recipe", u.getRecipes());
+				}
 			}
-		}
-		
-		else {
-			userAtt.put("user", null);
-		}
+			
+			else {
+				userAtt.put("user", null);
+			}
+		 }
 		request.getRequestDispatcher("profile.jsp").forward(request, response);
 	}
 

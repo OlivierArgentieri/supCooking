@@ -17,9 +17,9 @@
           <div class="col-sm-12 text-center">
             <hr>
             <h3 class="spacing_title">Profil de  <p><%=u.getUsername() %></p></h3>
-
-           
-				
+            <% if (u != null) { %>
+				<button type="button" href="auth/editProfile?id=<%=u.getId() %>" class="btn btn-primary">Primary</button>
+            <%} %>
             <hr>
           </div>
         </div>
@@ -61,7 +61,7 @@
 					   for(Recipe r : mesRecettes) { %>
 					   
           <div class="col-md-3">
-            <br><a href="#"><img class="img-fluid rounded receipe_first_img" src="images/<%=r.getImage() %>"></a>
+            <br><a href="#"><img class="img-fluid rounded receipe_first_img" src="assets/images/<%=r.getImage() %>"></a>
             <h5 class="receipe_more_title"><a href="#"><%=r.getName() %></a></h5>
             <div class="form-control text-center">
                 <i class="far fa-thumbs-up fa-lg"></i> <span class="thumbs-number">[10]</span> &nbsp; &nbsp; <i class="far fa-thumbs-down fa-lg"></i> <span class="thumbs-number">[5]</span>
@@ -78,21 +78,6 @@
         <% }%>
         
         
-          <div class="col-md-3">
-            <br><a href="#"><img class="img-fluid rounded receipe_first_img" src="assets/image/gratin2.jpg"></a>
-            <h5 class="receipe_more_title"><a href="#">Gratin de courgette</a></h5>
-            <div class="form-control text-center">
-                <i class="far fa-thumbs-up fa-lg"></i> <span class="thumbs-number">[6]</span> &nbsp; &nbsp; <i class="far fa-thumbs-down fa-lg"></i> <span class="thumbs-number">[2]</span>
-            </div>
-            <div class="btn-group" role="group" aria-label="cookingmore">
-              <button type="button" class="btn btn-default"><i class="fas fa-clock"></i> 45 minutes</button>
-              <button type="button" class="btn btn-default"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
     <!-- Footer -->
     <footer class="footer ">
         <div class="container">

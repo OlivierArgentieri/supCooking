@@ -25,7 +25,7 @@
             <br>
             <img class="img-responsive" src="assets/image/logo.png">
             <hr>
-            <form class="form-register" method="POST" action="register">
+            <form class="form-register" method="POST" action="inscription">
             	<p>
             		<span class="error">${messages["username"]}</span>
         		</p>

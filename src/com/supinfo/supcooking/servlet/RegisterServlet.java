@@ -105,7 +105,7 @@ public class RegisterServlet extends HttpServlet {
         	request.setAttribute("messages", messages);
         }
         
-        request.getRequestDispatcher("register.jsp").forward(request, response);
+        request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
 	
 	

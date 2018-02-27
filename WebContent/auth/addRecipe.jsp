@@ -3,9 +3,17 @@
 
 <%@page import="java.util.HashMap"%>
 <% HashMap<String, String> messages = (HashMap<String, String>) request.getAttribute("messages"); %>
-<%@include file="../header.jsp" %>
+<%@include file="header.jsp" %>
 <%@include file="../navBar.jsp" %>
+
       <div class="container">
+       <div class="row">
+          <div class="col-sm-12 text-center">
+
+            <h3 class="spacing_title">Ajouter une recette</h3>
+ 
+          </div>
+        </div>
           <div class="card card-container">
             <br>
             <img class="img-responsive" src="assets/image/logo.png">

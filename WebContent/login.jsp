@@ -37,7 +37,7 @@
 					</div>    
                 </div>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Connexion</button>
-            	<a href="register"><br>Je ne possède pas de compte</a>
+            	<a href="inscription"><br>Je ne possède pas de compte</a>
             </form>
           </div>
       </div>
