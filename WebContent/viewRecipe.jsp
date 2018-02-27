@@ -1,22 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.supinfo.supcooking.entity.User"%>
 <%@page import="com.supinfo.supcooking.entity.Recipe"%>
 <%@page import="java.util.List"%>
-<% User u = (User) request.getAttribute("user"); %>
-<% List<Recipe> mesRecettes =u.getRecipes(); %>
+<% Recipe r = (Recipe) request.getAttribute("recipe"); %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 	<%@ include file="header.jsp" %>
 	<%@ include file="navBar.jsp" %>
 
-    <!-- profil -->
+    <!-- recette -->
     <div class="container">
       <div class="receipe_detail">
         <div class="row">
           <div class="col-sm-12 text-center">
             <hr>
-            <h3 class="spacing_title">Profil de  <p><%=u.getUsername() %></p></h3>
+            <h3 class="spacing_title">Recette :  <p><%=r.getName() %></p></h3>
 
            
 				
@@ -52,14 +50,14 @@
         <div class="row">
             <div class="col-sm-12 text-center">
               <br><hr>
-              <h3 class="spacing_title">Recettes écrites par <%=u.getUsername() %></h3>
+              <h3 class="spacing_title"> Recette écrites par <%=r.getAuthor().getUsername()%></h3>
               <hr>
             </div>
-          
-           <%	if(mesRecettes != null){
-            
-					   for(Recipe r : mesRecettes) { %>
-					   
+   
+   
+   
+   
+   
           <div class="col-md-3">
             <br><a href="#"><img class="img-fluid rounded receipe_first_img" src="images/<%=r.getImage() %>"></a>
             <h5 class="receipe_more_title"><a href="#"><%=r.getName() %></a></h5>
@@ -72,12 +70,7 @@
             </div>
           
           </div>
-          <% } %>
-         <% } else {%>
-        	 <%=u.getUsername() %> n'a pas encore écris de recettes
-        <% }%>
-        
-        
+
           <div class="col-md-3">
             <br><a href="#"><img class="img-fluid rounded receipe_first_img" src="assets/image/gratin2.jpg"></a>
             <h5 class="receipe_more_title"><a href="#">Gratin de courgette</a></h5>
