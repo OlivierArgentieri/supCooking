@@ -86,7 +86,7 @@ public class Recipe implements Serializable{
 		this.time = time;
 	}
 	
-	public Time getCookingtIime () {
+	public Time getCookingTime () {
 		return this.cookingTime;
 	}
 	public void setCookingTime(Time cookingTime) {

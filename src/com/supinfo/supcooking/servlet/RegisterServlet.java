@@ -18,7 +18,7 @@ import com.supinfo.supcooking.util.Hash256Service;
 
 import java.util.*;
 
-@WebServlet("/register")
+@WebServlet("/inscription")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private EntityManagerFactory em;

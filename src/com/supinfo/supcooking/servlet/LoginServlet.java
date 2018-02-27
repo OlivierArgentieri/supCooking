@@ -21,7 +21,7 @@ import com.supinfo.supcooking.util.Hash256Service;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/login")
+@WebServlet("/connexion")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -70,7 +70,7 @@ public class LoginServlet extends HttpServlet {
 		{
 			HttpSession s =request.getSession();
 			s.setAttribute("user", connectedUser);
-			response.sendRedirect("/supCooking/index");
+			response.sendRedirect("/supCooking/accueil");
 		}
 		else
 		{
@@ -78,6 +78,5 @@ public class LoginServlet extends HttpServlet {
         	request.setAttribute("messages", messages);
         	request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
-		
 	}
 }

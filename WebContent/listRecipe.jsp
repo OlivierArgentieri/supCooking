@@ -2,21 +2,74 @@
     pageEncoding="UTF-8"%>
 <%@page import="com.supinfo.supcooking.entity.Recipe"%>
 <%@page import="java.util.List"%>
+<%@ include file="header.jsp" %>
+<%@ include file="navBar.jsp" %>
 <% List<Recipe> Recettes = (List<Recipe>) request.getAttribute("recipes"); %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-<%	if(Recettes != null){ 
-	for(Recipe r : Recettes) { %>
-	<span class="card-title"><%=r.getName() %></span>
-	<p><%=r.getRecipeDescription() %></p>
+<!-- List Recettes -->
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="receipe_liste_bloc">
+
+            <!-- <menu_item> -->
+            <div class="receipe_item text-center">
+              <div class="row">
+                <h3>Nos fantasiques recettes</h3>
+              </div>
+            </div>
+            <!-- </menu_item> -->
+
+		<%	if(Recettes != null){ 
+			for(Recipe r : Recettes) { %>
+            <!-- <item> -->
+            <div class="receipe_item">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-5 hidden-xs">
+                        <a href="story-13"><img class="img-fluid rounded receipe_first_img" src="assets/image/gratin1.jpg"></a>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                        <h2 class="receipe_titre">
+                            <a href="detailRecette.html" class="news_lien"><%=r.getName() %></a>
+                        </h2>
+                        <span class="text-muted"><b>Posté le <%=r.getDate() %></b></span>
+                        <p class="text-justify">
+                        	<%=r.getRecipeDescription() %>
+                        </p>
+                        <i class="far fa-thumbs-up fa-lg"></i> <span class="thumbs-number">[10]</span> &nbsp; &nbsp; <i class="far fa-thumbs-down thumbs-red fa-lg"></i> <span class="thumbs-number">[5]</span>
+
+                        <hr>
+                        <!-- Stars -->
+                        <p>Difficulté :<br>
+                        <% int compteur = 0;
+                        for(int i = 1; i <= 5; i++) {
+                        	if(compteur > r.getDifficulty()){ %>
+                        		<i class="far fa-star">
+                        	<% }else{ %>
+                        		<i class="fas fa-star">
+                        <%	}
+                        } %>
+                      </p>
+                      <p>
+                        Temps de préparation : <br>
+                        <i class="fas fa-clock"></i> <%=r.getTime() %> minutes
+                      </p>
+                      <p>
+                        Temps de cuisson : <br>
+                        <i class="fas fa-clock"></i> <%=r.getCookingTime() %> minutes
+                      </p>
+                    </div>
+                </div>
+            </div>
+            <!-- </item> -->
+
 	<%}
 	} %>
-
-</body>
-</html>
+	
+          </div>
+        </div>
+      </div>
+    </div>
+	
+<%@ include file="footer.jsp" %>

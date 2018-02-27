@@ -9,7 +9,7 @@
       <div class="dad">
         <div class="row" style="margin: 60px 0; text-align: center;">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <h1 class="full-title">"La bonne cuisine est honnete, sincere et simple."</h1>
+            <h1 class="full-title">La bonne cuisine est honnete, sincere et simple.</h1>
           </div>
         </div>
         <div class="row" style="margin: 60px 0; text-align: center;">
@@ -68,7 +68,7 @@
             <%	if(Recettes != null){ 
 				for(Recipe r : Recettes) { %>
 				<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 project wow animated animated4 fadeInLeft"
-			          style="background-image: url('assets/images/<%=r.getImage() %>');">
+			          style="background-image: url('assets/image/<%=r.getImage() %>');">
 			                <div class="project-hover">
 			                  <h3><%=r.getName() %></h3>
 			                    <hr />

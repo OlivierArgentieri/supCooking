@@ -26,7 +26,7 @@
             	<p>
             		<span class="error">${messages["user"]}</span>
         		</p>
-            <form class="form-signin" method="POST" action="login">
+            <form class="form-signin" method="POST" action="connexion">
                 <span id="reauth-email" class="reauth-email"></span>
                 <input type="text" name="username" id="inputPseudo" class="form-control" placeholder="Nom d'utilisateur" required autofocus>
                 <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de Passe" required>

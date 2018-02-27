@@ -132,7 +132,7 @@
                 <i class="far fa-thumbs-up fa-lg"></i> <span class="thumbs-number">[10]</span> &nbsp; &nbsp; <i class="far fa-thumbs-down fa-lg"></i> <span class="thumbs-number">[5]</span>
             </div>
             <div class="btn-group" role="group" aria-label="cookingmore">
-              <button type="button" class="btn btn-default"><i class="fas fa-clock"></i><%=r.getTime().getMinutes() + r.getCookingtIime().getMinutes() %> minutes</button>
+              <button type="button" class="btn btn-default"><i class="fas fa-clock"></i><%=r.getTime().getMinutes() + r.getCookingTime().getMinutes() %> minutes</button>
               <button type="button" class="btn btn-default"><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></button>
             </div>
           

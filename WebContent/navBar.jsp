@@ -1,7 +1,7 @@
 <%@page import="com.supinfo.supcooking.entity.User"%>
 <%@page import="com.supinfo.supcooking.entity.Recipe"%>
 <%@page import="java.util.List"%>
-<% User u = (User) request.getAttribute("user"); %>
+<% User us = (User) request.getAttribute("user"); %>
 <!-- Start Body -->
 <body id="page-top">
 	<!-- Navigation -->
@@ -11,12 +11,12 @@
 						<div class="col-sm-12">
 							<ul class="largenav flipkart-menu-ul">
 		                      <li class="upper-links"><a class="links" href="index.html"> <i class="fas fa-home"></i> Accueil</a></li>
-		                      <li class="upper-links"><a class="links" href="listeRecettes.html"> <i class="fas fa-tasks"></i> Toutes les recettes</a></li>
+		                      <li class="upper-links"><a class="links" href="/supCooking/recettes"> <i class="fas fa-tasks"></i> Toutes les recettes</a></li>
 		                      <li class="upper-links"><a class="links" href="#"> <i class="fas fa-random"></i> Recette aleatoire</a></li>
 		                      <li class="upper-links"><a class="links" href="/supCooking/auth/newRecipe"><i class="fas fa-pencil-alt"></i> Ecrire ma recette</a></li>
 		                      <!-- Moovers --><li class="up"></li>
-		                      	<%	if(u != null){ %>
-									<li class="upper-links"><a class="links" href="/supCooking/profile?id=<%=u.getId() %>"> <%=u.getUsername()%></a></li>
+		                      	<%	if(us != null){ %>
+									<li class="upper-links"><a class="links" href="/supCooking/profile?id=<%=us.getId() %>"> <%=us.getUsername()%></a></li>
 						        	<li class="upper-links"><a class="links" href="/supCooking/logout"><i class="fas fa-users"></i> Deconnexion</a></li>
 						        <%} else {  %>
 						        	<li class="upper-links"><a class="links" href="/supCooking/login.jsp"><i class="fas fa-users"></i> Connexion</a></li>
@@ -46,8 +46,7 @@
 					<span class="sidenav-heading">G2Oeufs</span>
 					<a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
 			</div>
-			<a href="#">Recettes</a>
-			<a href="#">Aleatoire</a>
-			<a href="#">Ma recette</a>
-			<a href="/supCooking/login.jsp">Connexion</a>
+			<a href="recettes">Recettes</a>
+			<a href="aleatoire">Aleatoire</a>
+			<a href="connexion">Connexion</a>
 	</div>
