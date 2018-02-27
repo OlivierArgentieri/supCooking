@@ -27,7 +27,7 @@
             <div class="receipe_item">
                 <div class="row">
                     <div class="col-lg-5 col-md-5 col-sm-5 hidden-xs">
-                        <a href="story-13"><img class="img-fluid rounded receipe_first_img" src="assets/image/gratin1.jpg"></a>
+                        <a href="story-13"><img class="img-fluid rounded receipe_first_img" src="assets/images/<%=r.getImage()%>"></a>
                     </div>
                     <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
                         <h2 class="receipe_titre">
@@ -42,14 +42,13 @@
                         <hr>
                         <!-- Stars -->
                         <p>Difficulté :<br>
-                        <% int compteur = 0;
-                        for(int i = 1; i <= 5; i++) {
-                        	if(compteur > r.getDifficulty()){ %>
-                        		<i class="far fa-star">
-                        	<% }else{ %>
-                        		<i class="fas fa-star">
-                        <%	}
-                        } %>
+                        <% for(int i = 1; i <= r.getDifficulty() ; i++) {%>	
+                        		<i class="fas fa-star"></i>
+                      <% } if (r.getDifficulty() < 5) {%>
+                      
+                        		<%for (int i =r.getDifficulty(); i < 5; i++) {%>
+                        		<i class="far fa-star"></i>
+                        <%}} %>
                       </p>
                       <p>
                         Temps de préparation : <br>
