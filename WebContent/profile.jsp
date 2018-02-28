@@ -62,7 +62,7 @@
 					   for(Recipe r : mesRecettes) { %>
 					   
           <div class="col-md-3">
-            <br><a href="#"><img class="img-fluid rounded receipe_first_img" src="assets/images/<%=r.getImage() %>"></a>
+            <br><a href="recette?id=<%=r.getId()%>"><img class="img-fluid rounded receipe_first_img" src="assets/images/<%=r.getImage() %>"></a>
             <h5 class="receipe_more_title"><a href="#"><%=r.getName() %></a></h5>
             <div class="form-control text-center">
                 <i class="far fa-thumbs-up fa-lg"></i> <span class="thumbs-number">[10]</span> &nbsp; &nbsp; <i class="far fa-thumbs-down fa-lg"></i> <span class="thumbs-number">[5]</span>

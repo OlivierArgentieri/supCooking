@@ -73,7 +73,7 @@
 			                  <h3><%=r.getName() %></h3>
 			                    <hr />
 			                    <p><%=r.getRecipeDescription() %></p>
-			                    <a href="#">Voir la recette</a>
+			                    <a href="recette?id=<%=r.getId()%>">Voir la recette</a>
 			                </div>
 			            </div>
 				<%}
