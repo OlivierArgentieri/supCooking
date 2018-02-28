@@ -34,9 +34,6 @@ public class Rate implements Serializable{
 		return this.id;
 	}
 	
-	
-	
-	
 	public String getIp() {
 		return this.ip;
 	}

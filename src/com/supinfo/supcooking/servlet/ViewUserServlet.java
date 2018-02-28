@@ -60,6 +60,7 @@ public class ViewUserServlet extends HttpServlet {
 		
 		 if (u != null && Long.valueOf(request.getParameter("id"))== u.getId()) {
 			
+			 request.setAttribute("usercnx", u);
 			 request.setAttribute("user", u);
 			// request.getRequestDispatcher("auth/profile.jsp?id="+ u.getId()).forward(request, response);
 		 }
